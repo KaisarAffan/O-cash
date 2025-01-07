@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1064722034163",
+    "project_id": "o-cash-9d21a",
+    "storage_bucket": "o-cash-9d21a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064722034163:android:d46a870b23f75e3469f686",
+        "android_client_info": {
+          "package_name": "com.example.ocash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByBiGNRZshxIMPE3Eyw-qZKM15cBUd31w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
