@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ocash/utils/color_pallete.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -13,10 +13,33 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: 155,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(),
+      backgroundColor: black,
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              height: 130,
+              child: Row(
+                children: [],
+              ),
+            ),
+            Stack(
+              children: [
+                SvgPicture.asset(
+                  'assets/images/Union.svg',
+                  width: MediaQuery.of(context).size.width,
+                  height: 722,
+                  fit: BoxFit
+                      .cover, // Ensures the SVG covers the entire background
+                ),
+                Container(
+                  height: 722,
+                  width: MediaQuery.of(context).size.width,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
