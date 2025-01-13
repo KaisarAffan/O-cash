@@ -12,12 +12,6 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: 155,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(),
-      ),
-    );
+    return const Placeholder();
   }
 }
