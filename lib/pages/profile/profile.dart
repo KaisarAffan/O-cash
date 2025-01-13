@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Profile extends StatefulWidget {
@@ -11,6 +12,12 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Container(
+        height: 155,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(),
+      ),
+    );
   }
 }
