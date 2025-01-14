@@ -12,13 +12,13 @@ class IntroPage extends StatelessWidget {
 
   final List<Map<String, String>> introData = [
     {
-      "img": "assets/dompet3.png",
+      "img": "assets/images/dompet3.png",
       "title": "Keamanan ekstra buat\nlindungin saldo mu",
       "description":
           "Bergabunglah dengan 3+ juta pengguna\nbertransaksi aman di Ocash",
     },
     {
-      "img": "assets/dompet4.png",
+      "img": "assets/images/dompet4.png",
       "title": "Nikmati fitur terbaik dari Ocash",
       "description": "Mulai sekarang, nikmati transaksi aman dan cepat!",
     },
