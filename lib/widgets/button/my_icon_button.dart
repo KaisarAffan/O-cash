@@ -10,16 +10,15 @@ class ReusableIconButton extends StatelessWidget {
   final Color color;
   final VoidCallback onPressed;
 
-  const ReusableIconButton(
-      {Key? key,
-      required this.icon,
-      required this.text,
-      required this.buttonWidth,
-      required this.buttonHeight,
-      required this.iconSize,
-      required this.onPressed,
-      required this.color})
-      : super(key: key);
+  const ReusableIconButton({
+    Key? key,
+    required this.icon,
+    this.text='',
+    required this.buttonWidth,
+    required this.buttonHeight,
+    required this.iconSize,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
