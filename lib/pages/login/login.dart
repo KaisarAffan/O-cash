@@ -21,9 +21,31 @@ class Login extends StatelessWidget {
           if (loginController.isLoading.value) {
             return const CircularProgressIndicator();
           } else {
-            return ElevatedButton(
-              onPressed: loginController.loginWithGoogle,
-              child: const Text('Sign In with Google'),
+            return Column(
+              children: [
+                if (!loginController.isLoggedIn
+                    .value) // Show sign-in button only if not logged in
+                  ElevatedButton(
+                    onPressed: loginController.loginWithGoogle,
+                    child: const Text('Sign In with Google'),
+                  ),
+                if (loginController
+                    .isLoggedIn.value) // Show logout button only if logged in
+                  ElevatedButton(
+                    onPressed: () async {
+                      await loginController.logout();
+                    },
+                    child: const Text('Logout'),
+                  ),
+                const SizedBox(height: 20), // Add some spacing
+                // Display login status message
+                Text(
+                  loginController.isLoggedIn.value
+                      ? 'Sudah Login'
+                      : 'Belum Login',
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ],
             );
           }
         }),
