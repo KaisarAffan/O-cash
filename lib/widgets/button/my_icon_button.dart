@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ocash/utils/color_pallete.dart';
 
 class ReusableIconButton extends StatelessWidget {
   final IconData icon;
@@ -6,16 +7,18 @@ class ReusableIconButton extends StatelessWidget {
   final double buttonWidth;
   final double buttonHeight;
   final double iconSize;
+  final Color color;
   final VoidCallback onPressed;
 
   const ReusableIconButton({
     Key? key,
     required this.icon,
-    this.text='',
+    this.text = '',
     required this.buttonWidth,
     required this.buttonHeight,
     required this.iconSize,
     required this.onPressed,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -29,7 +32,7 @@ class ReusableIconButton extends StatelessWidget {
             width: buttonWidth,
             height: buttonHeight,
             decoration: BoxDecoration(
-              color: Colors.grey[800],
+              color: color,
               shape: buttonWidth == buttonHeight
                   ? BoxShape.circle
                   : BoxShape.rectangle,
@@ -41,7 +44,7 @@ class ReusableIconButton extends StatelessWidget {
               child: Icon(
                 icon,
                 size: iconSize,
-                color: Colors.white,
+                color: white,
               ),
             ),
           ),
