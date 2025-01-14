@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:ocash/pages/login/controller.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_icon_button.dart';
 import 'package:ocash/widgets/button/profile_button.dart';
@@ -12,6 +14,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final LoginController loginController = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,19 +108,25 @@ class _ProfileState extends State<Profile> {
                             height: 6,
                           ),
                           ProfileButton(
-                              text: "Account Info",
-                              onPressed: () {},
-                              padding: EdgeInsets.all(15),
-                              border: BorderRadius.only(
-                                  topLeft: Radius.circular(8),
-                                  topRight: Radius.circular(8)), color: white, icon: Icons.person,),
+                            text: "Account Info",
+                            onPressed: () {},
+                            padding: EdgeInsets.all(15),
+                            border: BorderRadius.only(
+                                topLeft: Radius.circular(8),
+                                topRight: Radius.circular(8)),
+                            color: white,
+                            icon: Icons.person,
+                          ),
                           ProfileButton(
-                              text: "Login and security",
-                              onPressed: () {},
-                              padding: EdgeInsets.all(15),
-                              border: BorderRadius.only(
-                                  bottomLeft: Radius.circular(8),
-                                  bottomRight: Radius.circular(8)), color: white, icon: Icons.shield_outlined,),
+                            text: "Login and security",
+                            onPressed: () {},
+                            padding: EdgeInsets.all(15),
+                            border: BorderRadius.only(
+                                bottomLeft: Radius.circular(8),
+                                bottomRight: Radius.circular(8)),
+                            color: white,
+                            icon: Icons.shield_outlined,
+                          ),
                           SizedBox(
                             height: 16,
                           ),
@@ -128,24 +138,35 @@ class _ProfileState extends State<Profile> {
                             height: 6,
                           ),
                           ProfileButton(
-                              text: "Help center",
-                              onPressed: () {},
-                              padding: EdgeInsets.all(15),
-                              border: BorderRadius.only(
-                                  topLeft: Radius.circular(8),
-                                  topRight: Radius.circular(8)), color: white, icon: Icons.call,),
+                            text: "Help center",
+                            onPressed: () {},
+                            padding: EdgeInsets.all(15),
+                            border: BorderRadius.only(
+                                topLeft: Radius.circular(8),
+                                topRight: Radius.circular(8)),
+                            color: white,
+                            icon: Icons.call,
+                          ),
                           ProfileButton(
-                              text: "About app",
-                              onPressed: () {},
-                              padding: EdgeInsets.all(15),
-                              border: BorderRadius.only(), color: white, icon: Icons.info_outline,),
+                            text: "About app",
+                            onPressed: () {},
+                            padding: EdgeInsets.all(15),
+                            border: BorderRadius.only(),
+                            color: white,
+                            icon: Icons.info_outline,
+                          ),
                           ProfileButton(
-                              text: "Log Out",
-                              onPressed: () {},
-                              padding: EdgeInsets.all(15),
-                              border: BorderRadius.only(
-                                  bottomLeft: Radius.circular(8),
-                                  bottomRight: Radius.circular(8)), color: red, icon: Icons.logout,)
+                            text: "Log Out",
+                            onPressed: () {
+                              loginController.logout();
+                            },
+                            padding: EdgeInsets.all(15),
+                            border: BorderRadius.only(
+                                bottomLeft: Radius.circular(8),
+                                bottomRight: Radius.circular(8)),
+                            color: red,
+                            icon: Icons.logout,
+                          )
                         ],
                       ),
                     )

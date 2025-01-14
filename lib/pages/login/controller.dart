@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:ocash/routes/my_app_page.dart';
+import 'package:ocash/routes/my_app_route.dart';
 
 class LoginController extends GetxController {
   var isLoading = false.obs;
@@ -35,6 +37,7 @@ class LoginController extends GetxController {
         isLoggedIn.value = true;
 
         Get.snackbar('Success', 'Signed in as ${account.displayName}');
+        Get.offNamed(MyAppRoutes.dashboard);
       }
     } catch (e) {
       Get.snackbar('Error', 'Sign-in failed: $e');
@@ -51,6 +54,7 @@ class LoginController extends GetxController {
 
       // Navigate back to Login Page
       Get.snackbar('Success', 'Logged out successfully');
+      Get.offNamed(MyAppRoutes.loginPage);
     } catch (e) {
       Get.snackbar("Logout Failed", e.toString(),
           snackPosition: SnackPosition.BOTTOM);
