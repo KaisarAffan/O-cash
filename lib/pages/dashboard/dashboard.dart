@@ -5,8 +5,6 @@ import 'package:ocash/pages/finance/finance.dart';
 import 'package:ocash/pages/history/history.dart';
 import 'package:ocash/pages/home/home.dart';
 import 'package:ocash/pages/profile/profile.dart';
-import 'package:ocash/pages/qris/qris.dart';
-import 'package:ocash/routes/my_app_route.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});

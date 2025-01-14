@@ -13,11 +13,12 @@ class ReusableIconButton extends StatelessWidget {
   const ReusableIconButton({
     Key? key,
     required this.icon,
-    this.text='',
+    this.text = '',
     required this.buttonWidth,
     required this.buttonHeight,
     required this.iconSize,
     required this.onPressed,
+    required this.color,
   }) : super(key: key);
 
   @override
