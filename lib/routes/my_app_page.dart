@@ -5,11 +5,13 @@ import 'package:ocash/pages/history/history.dart';
 import 'package:ocash/pages/home/home.dart';
 import 'package:ocash/pages/profile/profile.dart';
 import 'package:ocash/pages/qris/qris.dart';
+import 'package:ocash/pages/intro/intro.dart';
 import 'package:ocash/routes/my_app_route.dart';
 
 class MyAppPage {
   static final List<GetPage> pages = [
     //GetPage(name: name, page: page)
+    GetPage(name: MyAppRoutes.introPage, page: () => IntroPage()),
     GetPage(name: MyAppRoutes.homePage, page: () => Home()),
     GetPage(name: MyAppRoutes.historyPage, page: () => History()),
     GetPage(name: MyAppRoutes.qrisPage, page: () => Qris()),

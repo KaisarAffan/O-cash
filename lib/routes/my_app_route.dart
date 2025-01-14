@@ -1,5 +1,8 @@
+import 'package:ocash/widgets/my_slider.dart';
+
 class MyAppRoutes {
   static const splashScreen = "/";
+  static const introPage = "/intro";
   static const loginPage = "/login";
   static const dashboard = "/dashboard";
   static const homePage = "/home";
