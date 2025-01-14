@@ -17,10 +17,43 @@ class _ProfileState extends State<Profile> {
       body: Center(
         child: Column(
           children: [
-            Container(
+            SizedBox(
+              height: 30,
+            ),
+            SizedBox(
               height: 130,
-              child: Row(
-                children: [],
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 80,
+                    child: Text(
+                      "rw",
+                      style: TextStyle(fontSize: 40),
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        "Jhon Doe",
+                        style: TextStyle(
+                            color: white,
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "johndoe@gmail.com",
+                        style: TextStyle(
+                          color: white,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
             Stack(
@@ -32,7 +65,7 @@ class _ProfileState extends State<Profile> {
                   fit: BoxFit
                       .cover, // Ensures the SVG covers the entire background
                 ),
-                Container(
+                SizedBox(
                   height: 722,
                   width: MediaQuery.of(context).size.width,
                 ),
