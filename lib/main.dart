@@ -1,9 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/routes/my_app_page.dart';
 import 'package:ocash/routes/my_app_route.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Initialize Firebase here
   runApp(const MyApp());
 }
 
@@ -14,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: MyAppPage.pages,
-      initialRoute: MyAppRoutes.introPage,
+      initialRoute: MyAppRoutes.loginPage, // Start at the login page
     );
   }
 }
