@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/pages/intro/controller.dart';
+import 'package:ocash/routes/my_app_route.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_slider.dart';
 import 'package:ocash/utils/color_pallete.dart';
@@ -44,12 +45,12 @@ class IntroPage extends StatelessWidget {
                   titleStyle: TextStyle(
                     fontSize: 30,
                     color: white,
-                    fontWeight: FontWeight.bold,  
+                    fontWeight: FontWeight.bold,
                   ),
                   descriptionStyle: TextStyle(
                     fontSize: 18,
                     color: white,
-                    fontWeight: FontWeight.w300,  
+                    fontWeight: FontWeight.w300,
                   ),
                 );
               },
@@ -91,6 +92,10 @@ class IntroPage extends StatelessWidget {
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                         );
+                      }
+                      if (controller.currentPage.value >=
+                          introData.length - 1) {
+                        Get.offNamed(MyAppRoutes.loginPage);
                       } else {
                         print("Navigasi ke halaman berikutnya!");
                       }
