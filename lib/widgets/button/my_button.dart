@@ -23,7 +23,7 @@ class MyButton extends StatelessWidget {
         padding: padding,
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(12),
         ),
       ),
       onPressed: onPressed,

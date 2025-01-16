@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyHistoryCard extends StatelessWidget {
   final String title;
-  final String status;
+  final String? status;
   final String time;
   final String amount;
   final Color backgroundColor;
@@ -11,7 +11,7 @@ class MyHistoryCard extends StatelessWidget {
   const MyHistoryCard({
     super.key,
     required this.title,
-    required this.status,
+    this.status,
     required this.time,
     required this.amount,
     required this.backgroundColor,
@@ -57,7 +57,7 @@ class MyHistoryCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    status,
+                    status!,
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
