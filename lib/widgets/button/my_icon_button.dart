@@ -7,7 +7,7 @@ class ReusableIconButton extends StatelessWidget {
   final double buttonWidth;
   final double buttonHeight;
   final double iconSize;
-  final Color color;
+  final Color? color;
   final VoidCallback onPressed;
 
   const ReusableIconButton({
@@ -18,7 +18,7 @@ class ReusableIconButton extends StatelessWidget {
     required this.buttonHeight,
     required this.iconSize,
     required this.onPressed,
-    required this.color,
+    this.color,
   }) : super(key: key);
 
   @override
