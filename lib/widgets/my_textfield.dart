@@ -35,39 +35,58 @@ class _MyEditTextState extends State<MyEditText> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: widget.controller,
-      obscureText: widget.isPassword && !_isPasswordVisible,
-      style: TextStyle(color: widget.textColor),
-      decoration: InputDecoration(
-        hintText: widget.hintText,
-        hintStyle: TextStyle(color: widget.hintColor),
-        prefixIcon: widget.icon != null
-            ? Icon(
-                widget.icon,
-                color: widget.hintColor,
-              )
-            : null,
-        suffixIcon: widget.isPassword
-            ? IconButton(
-                icon: Icon(
-                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15),
+      child: TextField(
+        controller: widget.controller,
+        obscureText: widget.isPassword && !_isPasswordVisible,
+        style: TextStyle(color: widget.textColor),
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          hintStyle: TextStyle(color: widget.hintColor),
+          prefixIcon: widget.icon != null
+              ? Icon(
+                  widget.icon,
                   color: widget.hintColor,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _isPasswordVisible = !_isPasswordVisible;
-                  });
-                },
-              )
-            : null,
-        filled: true,
-        fillColor: widget.fillColor,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(
-            color: widget.borderColor,
-            width: widget.borderWidth,
+                )
+              : null,
+          suffixIcon: widget.isPassword
+              ? IconButton(
+                  icon: Icon(
+                    _isPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                    color: widget.hintColor,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                  },
+                )
+              : null,
+          filled: true,
+          fillColor: widget.fillColor,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide(
+              color: widget.borderColor,
+              width: widget.borderWidth,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide(
+              color: widget.borderColor,
+              width: widget.borderWidth,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide(
+              color: widget.borderColor,
+              width: widget.borderWidth + 0.5,
+            ),
           ),
         ),
         enabledBorder: OutlineInputBorder(

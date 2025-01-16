@@ -5,6 +5,7 @@ class MyText extends StatelessWidget {
   final TextStyle style;
   final TextAlign textAlign;
 
+
   const MyText({
     Key? key,
     required this.text,

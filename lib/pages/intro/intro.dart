@@ -13,6 +13,7 @@ class IntroPage extends StatelessWidget {
 
   final List<Map<String, String>> introData = [
     {
+
       "img": "assets/images/dompet3.png",
       "title": "Keamanan ekstra buat\nlindungin saldo mu",
       "description":
