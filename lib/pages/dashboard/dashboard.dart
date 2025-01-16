@@ -7,6 +7,8 @@ import 'package:ocash/pages/home/home.dart';
 import 'package:ocash/pages/profile/profile.dart';
 import 'package:ocash/pages/qris/qris.dart';
 import 'package:ocash/routes/my_app_route.dart';
+import 'package:ocash/utils/color_pallete.dart';
+
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -25,6 +27,11 @@ class Dashboard extends StatelessWidget {
 
     return Obx(() {
       return Scaffold(
+        backgroundColor: black,
+        appBar: AppBar(
+          toolbarHeight: 0,
+          backgroundColor: Colors.transparent,
+        ),
         body: menus[dashboardController.selectedIndex.value],
         bottomNavigationBar: _navBar(dashboardController),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -32,13 +39,13 @@ class Dashboard extends StatelessWidget {
           height: 64,
           width: 64,
           child: FloatingActionButton(
-            backgroundColor: Color(0xffFF9500),
+            backgroundColor: orange,
             onPressed: () {},
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(100)),
             child: Icon(
               Icons.qr_code_rounded,
-              color: Color(0xffFFFFFF),
+              color: white,
               size: 30,
             ),
           ),
@@ -52,11 +59,11 @@ Widget _navBar(DashboardController dashboardController) {
   return Container(
       height: 76,
       decoration: BoxDecoration(
-          color: const Color(0xff222831),
+          color: gray,
           borderRadius: BorderRadius.circular(8),
           border: Border(
             top: BorderSide(
-              color: Color(0xffFF9500),
+              color: orange,
               width: 1,
             ),
           )),
@@ -72,10 +79,10 @@ Widget _navBar(DashboardController dashboardController) {
                 showSelectedLabels: true,
                 showUnselectedLabels: false,
                 type: BottomNavigationBarType.fixed,
-                backgroundColor: const Color(0xff2F2F2F),
-                selectedItemColor: const Color(0xff34C759),
+                backgroundColor: gray,
+                selectedItemColor: green,
                 selectedLabelStyle: TextStyle(fontSize: 12),
-                unselectedItemColor: const Color(0xffFFFFFF),
+                unselectedItemColor: white,
                 currentIndex: dashboardController.selectedIndex.value,
                 onTap: (index) => dashboardController.changeMenu(index),
                 items: const [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/pages/intro/controller.dart';
+import 'package:ocash/routes/my_app_route.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_slider.dart';
 import 'package:ocash/utils/color_pallete.dart';
@@ -12,13 +13,14 @@ class IntroPage extends StatelessWidget {
 
   final List<Map<String, String>> introData = [
     {
-      "img": "assets/dompet3.png",
+
+      "img": "assets/images/dompet3.png",
       "title": "Keamanan ekstra buat\nlindungin saldo mu",
       "description":
           "Bergabunglah dengan 3+ juta pengguna\nbertransaksi aman di Ocash",
     },
     {
-      "img": "assets/dompet4.png",
+      "img": "assets/images/dompet4.png",
       "title": "Nikmati fitur terbaik dari Ocash",
       "description": "Mulai sekarang, nikmati transaksi aman dan cepat!",
     },
@@ -44,12 +46,12 @@ class IntroPage extends StatelessWidget {
                   titleStyle: TextStyle(
                     fontSize: 30,
                     color: white,
-                    fontWeight: FontWeight.bold,  
+                    fontWeight: FontWeight.bold,
                   ),
                   descriptionStyle: TextStyle(
                     fontSize: 18,
                     color: white,
-                    fontWeight: FontWeight.w300,  
+                    fontWeight: FontWeight.w300,
                   ),
                 );
               },
@@ -91,6 +93,10 @@ class IntroPage extends StatelessWidget {
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                         );
+                      }
+                      if (controller.currentPage.value >=
+                          introData.length - 1) {
+                        Get.offNamed(MyAppRoutes.loginPage);
                       } else {
                         print("Navigasi ke halaman berikutnya!");
                       }

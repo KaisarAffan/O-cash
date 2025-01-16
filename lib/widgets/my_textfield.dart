@@ -88,10 +88,24 @@ class _MyEditTextState extends State<MyEditText> {
               width: widget.borderWidth + 0.5,
             ),
           ),
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 16.0,
-            horizontal: 16.0,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderSide: BorderSide(
+            color: widget.borderColor,
+            width: widget.borderWidth,
           ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderSide: BorderSide(
+            color: widget.borderColor,
+            width: widget.borderWidth + 0.5,
+          ),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 16.0,
+          horizontal: 16.0,
         ),
       ),
     );

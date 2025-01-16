@@ -8,7 +8,7 @@ class MyText extends StatelessWidget {
 
   const MyText({
     Key? key,
-    required this.text, 
+    required this.text,
     required this.style,
     required this.textAlign,
   }) : super(key: key);
