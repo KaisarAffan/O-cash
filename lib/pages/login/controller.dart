@@ -7,6 +7,10 @@ import 'package:ocash/routes/my_app_route.dart';
 class LoginController extends GetxController {
   var isLoading = false.obs;
   var isLoggedIn = false.obs;
+  var userName = ''.obs;
+  var userEmail = ''.obs;
+  var userPhoto = ''.obs;
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -14,7 +18,17 @@ class LoginController extends GetxController {
   void onInit() {
     super.onInit();
     auth.authStateChanges().listen((User? user) {
-      isLoggedIn.value = user != null;
+      if (user != null) {
+        isLoggedIn.value = true;
+        userName.value = user.displayName ?? 'Unknown User';
+        userEmail.value = user.email ?? '';
+        userPhoto.value = user.photoURL ?? '';
+      } else {
+        isLoggedIn.value = false;
+        userName.value = '';
+        userEmail.value = '';
+        userPhoto.value = '';
+      }
     });
   }
 
@@ -33,10 +47,17 @@ class LoginController extends GetxController {
           idToken: googleAuth.idToken,
         );
 
-        await FirebaseAuth.instance.signInWithCredential(credential);
+        final UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithCredential(credential);
+
         isLoggedIn.value = true;
 
-        Get.snackbar('Success', 'Signed in as ${account.displayName}');
+        final user = userCredential.user;
+        userName.value = user?.displayName ?? 'Unknown User';
+        userEmail.value = user?.email ?? '';
+        userPhoto.value = user?.photoURL ?? '';
+
+        Get.snackbar('Success', 'Signed in as ${userName.value}');
         Get.offNamed(MyAppRoutes.dashboard);
       }
     } catch (e) {
@@ -48,11 +69,14 @@ class LoginController extends GetxController {
 
   Future<void> logout() async {
     try {
-      await googleSignIn.signOut(); // Sign out from Google
-      await auth.signOut(); // Sign out from Firebase
-      isLoggedIn.value = false; // Update login state
+      await googleSignIn.signOut();
+      await auth.signOut();
 
-      // Navigate back to Login Page
+      userName.value = '';
+      userEmail.value = '';
+      userPhoto.value = '';
+      isLoggedIn.value = false;
+
       Get.snackbar('Success', 'Logged out successfully');
       Get.offNamed(MyAppRoutes.loginPage);
     } catch (e) {
