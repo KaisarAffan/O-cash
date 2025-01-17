@@ -44,57 +44,44 @@ class Login extends StatelessWidget {
                     children: [
                       Container(
                         padding: EdgeInsets.all(8),
-                        child: Text(
-                          "Username",
-                          style: TextStyle(
-                              color: white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.left,
-                        ),
+                        child: MyText(
+                            text: "Username",
+                            fontsize: 16,
+                            fontfamily: "MontserratBold",
+                            color: white,
+                            textAlign: TextAlign.left),
                       ),
-                      MyEditText(hintText: ""),
+                      MyEditText(controller: null),
                       Container(
                         padding: EdgeInsets.all(8),
-                        child: Text(
-                          "Password",
-                          style: TextStyle(
-                              color: white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                        child: MyText(
+                          text: "Password",
+                          color: white,
+                          fontsize: 16,
+                          fontfamily: "MontserratBold",
                           textAlign: TextAlign.left,
                         ),
                       ),
-                      MyEditText(hintText: ""),
+                      MyEditText(controller: null),
                       Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                        child: Text(
-                          "Forgot Password?",
-                          style: TextStyle(
-                              color: orange,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                        child: MyText(
+                          text: "Forgot Password?",
+                          color: orange,
+                          fontsize: 14,
+                          fontfamily: "MontserratBold",
                           textAlign: TextAlign.left,
                         ),
                       ),
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.only(top: 16, bottom: 8),
-                        child: ElevatedButton(
-                          child: Text(
-                            "Sign In",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: white,
-                                fontWeight: FontWeight.bold),
-                          ),
+                        child: MyButton(
+                          text: "Sign In",
                           onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: orange,
-                              padding: EdgeInsets.symmetric(vertical: 16),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20))),
+                          backgroundColor: orange,
+                          padding: EdgeInsets.symmetric(vertical: 16),
                         ),
                       ),
                     ],

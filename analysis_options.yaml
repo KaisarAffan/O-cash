@@ -10,9 +10,12 @@
 analyzer:
   errors:
 
+    avoid_unnecessary_containers: ignore
     prefer_const_constructors: ignore 
     prefer_const_literals_to_create_immutables: ignore
     sort_child_properties_last: ignore
+    unnecessary_string_interpolations: ignore
+    use_super_parameters: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

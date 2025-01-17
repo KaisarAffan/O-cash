@@ -13,7 +13,6 @@ class IntroPage extends StatelessWidget {
 
   final List<Map<String, String>> introData = [
     {
-
       "img": "assets/images/dompet3.png",
       "title": "Keamanan ekstra buat\nlindungin saldo mu",
       "description":
@@ -43,16 +42,6 @@ class IntroPage extends StatelessWidget {
                   img: item["img"]!,
                   title: item["title"]!,
                   description: item["description"]!,
-                  titleStyle: TextStyle(
-                    fontSize: 30,
-                    color: white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  descriptionStyle: TextStyle(
-                    fontSize: 18,
-                    color: white,
-                    fontWeight: FontWeight.w300,
-                  ),
                 );
               },
             ),
@@ -76,21 +65,23 @@ class IntroPage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Obx(
-              () => Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  MyButton(
+          SizedBox(height: 20),
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(bottom: 16, right: 16),
+                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  width: 144,
+                  child: MyButton(
                     text: controller.currentPage.value == introData.length - 1
                         ? "Start"
                         : "Next",
                     onPressed: () {
                       if (controller.currentPage.value < introData.length - 1) {
                         controller.pageController.nextPage(
-                          duration: const Duration(milliseconds: 300),
+                          duration: Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                         );
                       }
@@ -102,14 +93,12 @@ class IntroPage extends StatelessWidget {
                       }
                     },
                     backgroundColor: Colors.orange,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 20),
+                    padding: EdgeInsets.all(0),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 20),
         ],
       ),
     );

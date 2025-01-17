@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ocash/pages/login/controller.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_icon_button.dart';
+import 'package:ocash/widgets/component/my_mainactivity_button.dart';
+import 'package:ocash/widgets/component/my_subactivity_button.dart';
 import 'package:ocash/widgets/my_text.dart';
 
 class Home extends StatefulWidget {
@@ -11,6 +15,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final LoginController loginController = Get.put(LoginController());
+  bool isBalanceHidden = false;
+
+  void toggleBalanceVisibility() {
+    setState(() {
+      isBalanceHidden = !isBalanceHidden;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,19 +36,20 @@ class _HomeState extends State<Home> {
                 margin: EdgeInsets.symmetric(vertical: 15),
                 child: Column(
                   children: [
-                    Text(
-                      'Welcome',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: white,
-                          fontWeight: FontWeight.w500),
+                    MyText(
+                      text: 'Welcome',
+                      fontsize: 16,
+                      color: white,
+                      fontfamily: "MontserratSemi",
+                      textAlign: TextAlign.center,
                     ),
-                    Text(
-                      'John Doe',
-                      style: TextStyle(
-                          fontSize: 24,
-                          color: white,
-                          fontWeight: FontWeight.bold),
+                    MyText(
+                      text:
+                          '${loginController.auth.currentUser?.displayName ?? 'User'}',
+                      fontsize: 24,
+                      color: white,
+                      fontfamily: "MontserratBold",
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),
@@ -66,29 +80,47 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Balance',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: black,
-                                    fontWeight: FontWeight.w500),
+                              MyText(
+                                text: 'Balance',
+                                fontsize: 20,
+                                color: black,
+                                fontfamily: "MontserratSemi",
+                                textAlign: TextAlign.center,
                               ),
-                              Text(
-                                'Rp.1,700,000',
-                                style: TextStyle(
-                                    fontSize: 32,
-                                    color: black,
-                                    fontWeight: FontWeight.bold),
+                              RichText(
+                                text: TextSpan(
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: 'Rp.',
+                                      style: TextStyle(
+                                          color: black,
+                                          fontFamily: "MontserratMedi",
+                                          fontSize: 32),
+                                    ),
+                                    TextSpan(
+                                      text: isBalanceHidden
+                                          ? '*******'
+                                          : '1.700.000',
+                                      style: TextStyle(
+                                          color: black,
+                                          fontFamily: 'MontserratBold',
+                                          fontSize: 32),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
                           ReusableIconButton(
-                              icon: Icons.visibility_outlined,
-                              text: '',
-                              buttonWidth: 40,
-                              buttonHeight: 40,
-                              iconSize: 37,
-                              onPressed: () {})
+                            icon: isBalanceHidden
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            text: '',
+                            buttonWidth: 40,
+                            buttonHeight: 40,
+                            iconSize: 37,
+                            onPressed: toggleBalanceVisibility,
+                          ),
                         ],
                       ),
                     ),
@@ -99,35 +131,7 @@ class _HomeState extends State<Home> {
                 height: 105,
                 margin: EdgeInsets.symmetric(horizontal: 32),
                 decoration: BoxDecoration(color: Color(0xff232323)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                        child: ReusableIconButton(
-                            icon: Icons.add_circle_outline,
-                            text: 'Top Up',
-                            buttonWidth: 90,
-                            buttonHeight: 60,
-                            iconSize: 30,
-                            onPressed: () {})),
-                    Container(
-                        child: ReusableIconButton(
-                            icon: Icons.arrow_circle_down_rounded,
-                            text: 'Transfer',
-                            buttonWidth: 90,
-                            buttonHeight: 60,
-                            iconSize: 30,
-                            onPressed: () {})),
-                    Container(
-                        child: ReusableIconButton(
-                            icon: Icons.arrow_circle_down_rounded,
-                            text: 'Request',
-                            buttonWidth: 90,
-                            buttonHeight: 60,
-                            iconSize: 30,
-                            onPressed: () {}))
-                  ],
-                ),
+                child: MyMainactivityButton(),
               ),
               Container(
                 height: 527,
@@ -157,46 +161,7 @@ class _HomeState extends State<Home> {
                       SizedBox(
                         height: 11,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ReusableIconButton(
-                              icon: Icons.electric_bolt,
-                              text: 'Electricity',
-                              buttonWidth: 65,
-                              buttonHeight: 65,
-                              iconSize: 30,
-                              onPressed: () {}),
-                          ReusableIconButton(
-                              icon: Icons.wifi,
-                              text: 'Internet',
-                              buttonWidth: 65,
-                              buttonHeight: 65,
-                              iconSize: 30,
-                              onPressed: () {}),
-                          ReusableIconButton(
-                              icon: Icons.store_mall_directory_outlined,
-                              text: 'Merchant',
-                              buttonWidth: 65,
-                              buttonHeight: 65,
-                              iconSize: 30,
-                              onPressed: () {}),
-                          ReusableIconButton(
-                              icon: Icons.gamepad_outlined,
-                              text: 'Games',
-                              buttonWidth: 65,
-                              buttonHeight: 65,
-                              iconSize: 30,
-                              onPressed: () {}),
-                          ReusableIconButton(
-                              icon: Icons.dashboard_customize_outlined,
-                              text: 'More',
-                              buttonWidth: 65,
-                              buttonHeight: 65,
-                              iconSize: 30,
-                              onPressed: () {}),
-                        ],
-                      ),
+                      MySubactivityButton(),
                       SizedBox(
                         height: 16,
                       ),

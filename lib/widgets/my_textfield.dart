@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyEditText extends StatefulWidget {
-  final String hintText;
+  final String? hintText;
   final bool isPassword;
   final TextEditingController? controller;
   final IconData? icon;
@@ -14,9 +14,9 @@ class MyEditText extends StatefulWidget {
 
   const MyEditText({
     Key? key,
-    required this.hintText,
+    this.hintText,
     this.isPassword = false,
-    this.controller,
+    required this.controller,
     this.icon,
     this.borderColor = Colors.orange,
     this.borderWidth = 1.5,
@@ -35,58 +35,40 @@ class _MyEditTextState extends State<MyEditText> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 15),
-      child: TextField(
-        controller: widget.controller,
-        obscureText: widget.isPassword && !_isPasswordVisible,
-        style: TextStyle(color: widget.textColor),
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          hintStyle: TextStyle(color: widget.hintColor),
-          prefixIcon: widget.icon != null
-              ? Icon(
-                  widget.icon,
+    return TextField(
+      controller: widget.controller,
+      obscureText: widget.isPassword && !_isPasswordVisible,
+      style: TextStyle(
+          color: widget.textColor, fontFamily: "MontserratBold", fontSize: 16),
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        hintStyle: TextStyle(color: widget.hintColor),
+        prefixIcon: widget.icon != null
+            ? Icon(
+                widget.icon,
+                color: widget.hintColor,
+              )
+            : null,
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                icon: Icon(
+                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                   color: widget.hintColor,
-                )
-              : null,
-          suffixIcon: widget.isPassword
-              ? IconButton(
-                  icon: Icon(
-                    _isPasswordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                    color: widget.hintColor,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _isPasswordVisible = !_isPasswordVisible;
-                    });
-                  },
-                )
-              : null,
-          filled: true,
-          fillColor: widget.fillColor,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            borderSide: BorderSide(
-              color: widget.borderColor,
-              width: widget.borderWidth,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            borderSide: BorderSide(
-              color: widget.borderColor,
-              width: widget.borderWidth,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            borderSide: BorderSide(
-              color: widget.borderColor,
-              width: widget.borderWidth + 0.5,
-            ),
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isPasswordVisible = !_isPasswordVisible;
+                  });
+                },
+              )
+            : null,
+        filled: true,
+        fillColor: widget.fillColor,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderSide: BorderSide(
+            color: widget.borderColor,
+            width: widget.borderWidth,
           ),
         ),
         enabledBorder: OutlineInputBorder(
@@ -102,10 +84,6 @@ class _MyEditTextState extends State<MyEditText> {
             color: widget.borderColor,
             width: widget.borderWidth + 0.5,
           ),
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 16.0,
         ),
       ),
     );

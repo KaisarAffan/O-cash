@@ -9,7 +9,7 @@ class TransferPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:black,
+      backgroundColor: black,
       appBar: AppBar(
         title: const Text("Transfer"),
         centerTitle: true,
@@ -109,6 +109,7 @@ class TransferPage extends StatelessWidget {
                   fillColor: Colors.black,
                   textColor: Colors.white,
                   hintColor: Colors.grey,
+                  controller: null,
                 ),
                 Positioned(
                   right: 10,
@@ -195,7 +196,6 @@ class _CurrencyTextFieldState extends State<CurrencyTextField> {
           );
         }
       },
-
     );
   }
 }
