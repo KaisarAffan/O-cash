@@ -15,6 +15,7 @@ analyzer:
     prefer_const_literals_to_create_immutables: ignore
     sort_child_properties_last: ignore
     unnecessary_string_interpolations: ignore
+    unused_local_variable: ignore
     use_super_parameters: ignore
 include: package:flutter_lints/flutter.yaml
 

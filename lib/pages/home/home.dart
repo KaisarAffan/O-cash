@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:ocash/pages/login/controller.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_icon_button.dart';
-import 'package:ocash/widgets/component/my_mainactivity_button.dart';
-import 'package:ocash/widgets/component/my_subactivity_button.dart';
+import 'package:ocash/widgets/component/home_component/my_mainactivity_button.dart';
+import 'package:ocash/widgets/component/home_component/my_subactivity_button.dart';
 import 'package:ocash/widgets/my_text.dart';
 
 class Home extends StatefulWidget {
