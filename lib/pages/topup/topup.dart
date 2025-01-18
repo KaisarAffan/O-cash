@@ -4,8 +4,8 @@ import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_text.dart';
 import 'package:ocash/widgets/my_textfield.dart';
 
-class TransferPage extends StatelessWidget {
-  TransferPage({super.key});
+class TopUpPage extends StatelessWidget {
+  TopUpPage({super.key});
   final TextEditingController _currencyController =
       CurrencyController().getController();
 
@@ -14,7 +14,7 @@ class TransferPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: black,
       appBar: AppBar(
-        title: const Text("Transfer"),
+        title: const Text("Top Up"),
         centerTitle: true,
         backgroundColor: black,
         titleTextStyle: const TextStyle(
@@ -35,7 +35,7 @@ class TransferPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyText(
-              text: "Transfer to",
+              text: "Top Up",
               fontsize: 16,
               fontfamily: "MontserratBold",
               color: white,
@@ -50,29 +50,16 @@ class TransferPage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.person, color: Colors.white, size: 40),
+                  Icon(Icons.account_balance, color: Colors.white, size: 40),
                   SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MyText(
-                          text: "Diana Dian",
-                          fontsize: 18,
-                          fontfamily: "MontserratBold",
-                          color: white,
-                          textAlign: TextAlign.left,
-                        ),
-                        MyText(
-                          text: "Bank Jateng",
-                          fontsize: 12,
-                          fontfamily: "MontserratSemiBold",
-                          color: white,
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
+                  MyText(
+                    text: "BANK BCA",
+                    fontsize: 18,
+                    fontfamily: "MontserratSemiBold",
+                    color: white,
+                    textAlign: TextAlign.left,
                   ),
+                  Spacer(),
                   const Icon(Icons.keyboard_arrow_down, color: Colors.white),
                 ],
               ),
@@ -85,36 +72,43 @@ class TransferPage extends StatelessWidget {
               color: white,
               textAlign: TextAlign.left,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             MyEditText(
               controller: CurrencyController().getController(),
               textInputType: TextInputType.number,
               hintText: "Masukkan nominal",
             ),
-            SizedBox(height: 20),
-            MyText(
-              text: "Add message",
-              fontsize: 18,
-              fontfamily: "MontserratBold",
-              color: white,
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(height: 10),
-            Stack(
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MyEditText(
-                  controller: null,
-                  textInputType: TextInputType.number,
-                  hintText: "Type your message here",
+                MyButton(
+                  text: "50,000",
+                  onPressed: () {},
+                  backgroundColor: gray,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
                 ),
-                Positioned(
-                  right: 10,
-                  top: 16,
-                  bottom: 18,
-                  child: Icon(
-                    Icons.edit_outlined,
-                    color: Colors.white,
-                  ),
+                MyButton(
+                  text: "100,000",
+                  onPressed: () {},
+                  backgroundColor: gray,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                ),
+                MyButton(
+                  text: "200,000",
+                  onPressed: () {},
+                  backgroundColor: gray,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                ),
+                MyButton(
+                  text: "500,000",
+                  onPressed: () {},
+                  backgroundColor: gray,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
                 ),
               ],
             ),
@@ -122,7 +116,7 @@ class TransferPage extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width,
               child: MyButton(
-                text: "Transfer",
+                text: "Top Up",
                 onPressed: () {},
                 backgroundColor: Colors.orange,
                 padding: const EdgeInsets.symmetric(vertical: 12),
