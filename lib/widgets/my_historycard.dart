@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ocash/utils/color_pallete.dart';
+import 'package:ocash/widgets/my_text.dart';
 
 class MyHistoryCard extends StatelessWidget {
   final String title;
@@ -23,7 +25,7 @@ class MyHistoryCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: gray,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Padding(
@@ -34,12 +36,16 @@ class MyHistoryCard extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: gray, 
                 shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.white, 
+                  width: 2.0, 
+                ),
               ),
               child: Icon(
                 icon,
-                color: Colors.black,
+                color: white, 
                 size: 24,
               ),
             ),
@@ -48,20 +54,27 @@ class MyHistoryCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  MyText(
+                    text: title,
+                    fontsize: 16,
+                    fontfamily: "MontserratBold",
+                    color: Colors.white,
+                    textAlign: TextAlign.left,
                   ),
-                  Text(
-                    status!,
-                    style: const TextStyle(
+                  if (status != null)
+                    MyText(
+                      text: status!,
+                      fontsize: 14,
+                      fontfamily: "Montserrat",
                       color: Colors.grey,
-                      fontSize: 14,
+                      textAlign: TextAlign.left,
                     ),
+                  MyText(
+                    text: amount,
+                    fontsize: 16,
+                    fontfamily: "Montserratbold",
+                    color: Colors.white,
+                    textAlign: TextAlign.left,
                   ),
                 ],
               ),
@@ -69,20 +82,12 @@ class MyHistoryCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  time,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12,
-                  ),
-                ),
-                Text(
-                  amount,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                MyText(
+                  text: time,
+                  fontsize: 12,
+                  fontfamily: "Montserrat",
+                  color: Colors.grey,
+                  textAlign: TextAlign.right,
                 ),
               ],
             ),
