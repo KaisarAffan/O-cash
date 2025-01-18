@@ -7,6 +7,7 @@ import 'package:ocash/pages/login/login.dart';
 import 'package:ocash/pages/profile/profile.dart';
 import 'package:ocash/pages/qris/qris.dart';
 import 'package:ocash/pages/intro/intro.dart';
+import 'package:ocash/pages/topup/topup.dart';
 import 'package:ocash/pages/transfer/transfer.dart';
 import 'package:ocash/routes/my_app_route.dart';
 
@@ -19,6 +20,7 @@ class MyAppPage {
     GetPage(name: MyAppRoutes.qrisPage, page: () => Qris()),
     GetPage(name: MyAppRoutes.financePage, page: () => Finance()),
     GetPage(name: MyAppRoutes.transferPage, page: () => TransferPage()),
+    GetPage(name: MyAppRoutes.topUpPage, page: () => TopUpPage()),
     GetPage(name: MyAppRoutes.profilePage, page: () => Profile()),
     GetPage(name: MyAppRoutes.dashboard, page: () => Dashboard()),
     GetPage(name: MyAppRoutes.loginPage, page: () => Login()),

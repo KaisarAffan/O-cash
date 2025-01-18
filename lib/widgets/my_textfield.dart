@@ -5,6 +5,7 @@ class MyEditText extends StatefulWidget {
   final bool isPassword;
   final TextEditingController? controller;
   final IconData? icon;
+  final TextInputType? textInputType;
   final Color borderColor;
   final double borderWidth;
   final double borderRadius;
@@ -17,6 +18,7 @@ class MyEditText extends StatefulWidget {
     this.hintText,
     this.isPassword = false,
     required this.controller,
+    this.textInputType,
     this.icon,
     this.borderColor = Colors.orange,
     this.borderWidth = 1.5,
@@ -38,6 +40,7 @@ class _MyEditTextState extends State<MyEditText> {
     return TextField(
       controller: widget.controller,
       obscureText: widget.isPassword && !_isPasswordVisible,
+      keyboardType: widget.textInputType,
       style: TextStyle(
           color: widget.textColor, fontFamily: "MontserratBold", fontSize: 16),
       decoration: InputDecoration(
