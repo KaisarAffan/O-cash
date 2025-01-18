@@ -99,8 +99,8 @@ class _HomeState extends State<Home> {
                                     ),
                                     TextSpan(
                                       text: isBalanceHidden
-                                          ? '*******'
-                                          : '1.700.000',
+                                          ? '1.700.000'
+                                          : '*******',
                                       style: TextStyle(
                                           color: black,
                                           fontFamily: 'MontserratBold',
@@ -113,8 +113,8 @@ class _HomeState extends State<Home> {
                           ),
                           ReusableIconButton(
                             icon: isBalanceHidden
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
                             text: '',
                             buttonWidth: 40,
                             buttonHeight: 40,

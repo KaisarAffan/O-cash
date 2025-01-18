@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_icon_button.dart';
 
 class MyMainactivityButton extends StatelessWidget {
@@ -12,6 +13,7 @@ class MyMainactivityButton extends StatelessWidget {
         Container(
             child: ReusableIconButton(
                 icon: Icons.add_circle_outline,
+                color: gray,
                 text: 'Top Up',
                 buttonWidth: 90,
                 buttonHeight: 60,
@@ -20,6 +22,7 @@ class MyMainactivityButton extends StatelessWidget {
         Container(
             child: ReusableIconButton(
                 icon: Icons.arrow_circle_down_rounded,
+                color: gray,
                 text: 'Transfer',
                 buttonWidth: 90,
                 buttonHeight: 60,
@@ -28,6 +31,7 @@ class MyMainactivityButton extends StatelessWidget {
         Container(
             child: ReusableIconButton(
                 icon: Icons.arrow_circle_down_rounded,
+                color: gray,
                 text: 'Request',
                 buttonWidth: 90,
                 buttonHeight: 60,
