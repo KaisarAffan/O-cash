@@ -7,7 +7,6 @@ class MyHistoryCard extends StatelessWidget {
   final String? status;
   final String time;
   final String amount;
-  final Color backgroundColor;
   final IconData icon;
 
   const MyHistoryCard({
@@ -16,40 +15,39 @@ class MyHistoryCard extends StatelessWidget {
     this.status,
     required this.time,
     required this.amount,
-    required this.backgroundColor,
     this.icon = Icons.add,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      margin: EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: gray,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Row(
           children: [
             Container(
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                color: gray, 
+                color: gray,
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: Colors.white, 
-                  width: 2.0, 
+                  color: Colors.white,
+                  width: 2.0,
                 ),
               ),
               child: Icon(
                 icon,
-                color: white, 
+                color: white,
                 size: 24,
               ),
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,31 +63,26 @@ class MyHistoryCard extends StatelessWidget {
                     MyText(
                       text: status!,
                       fontsize: 14,
-                      fontfamily: "Montserrat",
+                      fontfamily: "MontserratSemi",
                       color: Colors.grey,
                       textAlign: TextAlign.left,
                     ),
                   MyText(
                     text: amount,
                     fontsize: 16,
-                    fontfamily: "Montserratbold",
+                    fontfamily: "MontserratBold",
                     color: Colors.white,
                     textAlign: TextAlign.left,
                   ),
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                MyText(
-                  text: time,
-                  fontsize: 12,
-                  fontfamily: "Montserrat",
-                  color: Colors.grey,
-                  textAlign: TextAlign.right,
-                ),
-              ],
+            MyText(
+              text: time,
+              fontsize: 16,
+              fontfamily: "MontserratMedi",
+              color: Colors.grey,
+              textAlign: TextAlign.right,
             ),
           ],
         ),

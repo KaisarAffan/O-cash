@@ -5,9 +5,7 @@ import 'package:ocash/widgets/my_text.dart';
 import 'package:ocash/widgets/my_textfield.dart';
 
 class TopUpPage extends StatelessWidget {
-  TopUpPage({super.key});
-  final TextEditingController _currencyController =
-      CurrencyController().getController();
+  const TopUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
