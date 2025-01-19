@@ -102,7 +102,7 @@ class TransferPage extends StatelessWidget {
               children: [
                 MyEditText(
                   controller: null,
-                  textInputType: TextInputType.number,
+                  textInputType: TextInputType.text,
                   hintText: "Type your message here",
                 ),
                 Positioned(
