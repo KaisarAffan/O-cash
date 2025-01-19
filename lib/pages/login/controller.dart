@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:ocash/routes/my_app_page.dart';
 import 'package:ocash/routes/my_app_route.dart';
 
 class LoginController extends GetxController {

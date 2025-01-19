@@ -5,9 +5,7 @@ import 'package:ocash/widgets/my_text.dart';
 import 'package:ocash/widgets/my_textfield.dart';
 
 class TransferPage extends StatelessWidget {
-  TransferPage({super.key});
-  final TextEditingController _currencyController =
-      CurrencyController().getController();
+  const TransferPage({super.key});
 
   @override
   Widget build(BuildContext context) {
