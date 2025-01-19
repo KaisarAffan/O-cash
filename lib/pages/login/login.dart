@@ -34,7 +34,7 @@ class Login extends StatelessWidget {
                   height: 100,
                   width: 306,
                   child: SvgPicture.asset(
-                    'assets/images/Ocash-logo.svg',
+                    'assets/images/ocash-text-logo.svg',
                     fit: BoxFit.contain,
                   ),
                 ),
