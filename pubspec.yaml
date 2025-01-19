@@ -66,9 +66,10 @@ flutter:
   assets:
     - assets/images/Union.svg
     - assets/images/google-icon.svg
-    - assets/images/Ocash-logo.svg
     - assets/images/qris-logo.svg
     - assets/images/qris-logo.png
+    - assets/images/ocash-logo.svg
+    - assets/images/ocash-text-logo.svg
     - assets/images/dompet3.png
     - assets/images/dompet4.png
     - assets/images/subtract.png
