@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ocash/utils/color_pallete.dart';
 
-class ProfileButton extends StatelessWidget {
+class MyProfileButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final EdgeInsetsGeometry padding;
@@ -10,7 +10,7 @@ class ProfileButton extends StatelessWidget {
   final Color color;
   final IconData icon;
 
-  const ProfileButton({
+  const MyProfileButton({
     Key? key,
     required this.text,
     required this.onPressed,

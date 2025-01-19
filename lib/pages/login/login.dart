@@ -3,9 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ocash/pages/home/home.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_color.dart';
@@ -34,7 +31,7 @@ class Login extends StatelessWidget {
                   height: 100,
                   width: 306,
                   child: SvgPicture.asset(
-                    'assets/images/Ocash-logo.svg',
+                    'assets/images/ocash-text-logo.svg',
                     fit: BoxFit.contain,
                   ),
                 ),

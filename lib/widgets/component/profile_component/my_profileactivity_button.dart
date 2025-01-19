@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/pages/login/controller.dart';
 import 'package:ocash/utils/color_pallete.dart';
-import 'package:ocash/widgets/button/profile_button.dart';
+import 'package:ocash/widgets/button/my_profile_button.dart';
 import 'package:ocash/widgets/my_color.dart';
 
 class MyProfileactivityButton extends StatelessWidget {
@@ -36,7 +36,7 @@ class MyProfileactivityButton extends StatelessWidget {
                 SizedBox(
                   height: 6,
                 ),
-                ProfileButton(
+                MyProfileButton(
                   text: "Account Info",
                   onPressed: () {},
                   padding: EdgeInsets.all(15),
@@ -46,7 +46,7 @@ class MyProfileactivityButton extends StatelessWidget {
                   color: white,
                   icon: Icons.person,
                 ),
-                ProfileButton(
+                MyProfileButton(
                   text: "Login and security",
                   onPressed: () {},
                   padding: EdgeInsets.all(15),
@@ -66,7 +66,7 @@ class MyProfileactivityButton extends StatelessWidget {
                 SizedBox(
                   height: 6,
                 ),
-                ProfileButton(
+                MyProfileButton(
                   text: "Help center",
                   onPressed: () {},
                   padding: EdgeInsets.all(15),
@@ -76,7 +76,7 @@ class MyProfileactivityButton extends StatelessWidget {
                   color: white,
                   icon: Icons.call,
                 ),
-                ProfileButton(
+                MyProfileButton(
                   text: "About app",
                   onPressed: () {},
                   padding: EdgeInsets.all(15),
@@ -84,7 +84,7 @@ class MyProfileactivityButton extends StatelessWidget {
                   color: white,
                   icon: Icons.info_outline,
                 ),
-                ProfileButton(
+                MyProfileButton(
                   text: "Log Out",
                   onPressed: () {
                     loginController.logout();

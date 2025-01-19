@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ocash/routes/my_app_route.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_icon_button.dart';
 
@@ -18,7 +20,9 @@ class MyMainactivityButton extends StatelessWidget {
                 buttonWidth: 90,
                 buttonHeight: 60,
                 iconSize: 30,
-                onPressed: () {})),
+                onPressed: () {
+                  Get.toNamed(MyAppRoutes.topUpPage);
+                })),
         Container(
             child: ReusableIconButton(
                 icon: Icons.arrow_circle_down_rounded,
@@ -27,7 +31,9 @@ class MyMainactivityButton extends StatelessWidget {
                 buttonWidth: 90,
                 buttonHeight: 60,
                 iconSize: 30,
-                onPressed: () {})),
+                onPressed: () {
+                  Get.toNamed(MyAppRoutes.transferPage);
+                })),
         Container(
             child: ReusableIconButton(
                 icon: Icons.arrow_circle_down_rounded,
