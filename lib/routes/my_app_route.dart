@@ -1,4 +1,3 @@
-import 'package:ocash/widgets/my_slider.dart';
 
 class MyAppRoutes {
   static const splashScreen = "/";
