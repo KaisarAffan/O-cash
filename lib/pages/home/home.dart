@@ -25,14 +25,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    fetchBalance();
-  }
-
-  Future<void> fetchBalance() async {
-    final userId = FirebaseAuth.instance.currentUser?.uid;
-    if (userId != null) {
-      await balanceController.fetchBalance(userId);
-    }
   }
 
   @override
@@ -67,7 +59,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              if (userId != null) MyBalanceCard(userId: userId),
+              MyBalanceCard(),
               Container(
                 height: 105,
                 margin: EdgeInsets.symmetric(horizontal: 32),

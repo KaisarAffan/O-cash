@@ -7,8 +7,9 @@ import 'package:ocash/widgets/button/my_icon_button.dart';
 import 'package:ocash/widgets/my_text.dart';
 
 class MyBalanceCard extends StatefulWidget {
-  final String userId; // Pass the logged-in user's ID to the widget
-  const MyBalanceCard({super.key, required this.userId});
+  const MyBalanceCard({
+    super.key,
+  });
 
   @override
   State<MyBalanceCard> createState() => _MyBalanceCardState();
@@ -22,7 +23,6 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
   @override
   void initState() {
     super.initState();
-    balanceController.fetchBalance(widget.userId);
   }
 
   void toggleBalanceVisibility() {
@@ -67,7 +67,6 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
                     ),
                     Obx(
                       () {
-                        final balance = balanceController.balance.value;
                         return RichText(
                           text: TextSpan(
                             children: <TextSpan>[
@@ -79,9 +78,7 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
                                     fontSize: 32),
                               ),
                               TextSpan(
-                                text: isBalanceHidden
-                                    ? '*******'
-                                    : balance.toStringAsFixed(2),
+                                text: isBalanceHidden ? '*******' : '1.700.000',
                                 style: TextStyle(
                                     color: black,
                                     fontFamily: 'MontserratBold',

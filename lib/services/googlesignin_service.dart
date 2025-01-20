@@ -124,26 +124,4 @@ class GoogleSignInController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
-
-  Future<void> fetchBalanceFromFirestore() async {
-    final userId = FirebaseAuth.instance.currentUser?.uid;
-    if (userId != null) {
-      try {
-        final DocumentSnapshot userDoc = await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userId)
-            .get();
-
-        if (userDoc.exists) {
-          final balance = userDoc['balance'] ?? 0.0;
-          Get.find<BalanceController>().setBalance(balance);
-        } else {
-          Get.find<BalanceController>()
-              .setBalance(0.0); // Set balance to 0 if not found
-        }
-      } catch (e) {
-        Get.snackbar('Error', 'Failed to fetch balance: $e');
-      }
-    }
-  }
 }
