@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:ocash/pages/login/controller.dart';
 import 'package:ocash/routes/my_app_route.dart';
 import 'package:ocash/utils/color_pallete.dart';
 
@@ -9,8 +10,13 @@ class Splashscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LoginController loginController = Get.put(LoginController());
     Future.delayed(const Duration(seconds: 3), () {
-      Get.offNamed(MyAppRoutes.introPage);
+      if (loginController.isLoggedIn.value) {
+        Get.offNamed(MyAppRoutes.dashboard);
+      } else {
+        Get.offNamed(MyAppRoutes.introPage);
+      }
     });
 
     return Scaffold(

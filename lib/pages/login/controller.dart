@@ -1,7 +1,8 @@
-import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ocash/routes/my_app_route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   var isLoading = false.obs;
@@ -16,6 +17,7 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    checkLoginStatus();
     auth.authStateChanges().listen((User? user) {
       if (user != null) {
         isLoggedIn.value = true;
@@ -29,6 +31,11 @@ class LoginController extends GetxController {
         userPhoto.value = '';
       }
     });
+  }
+
+  void checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    isLoggedIn.value = prefs.getBool('isLoggedIn') ?? false;
   }
 
   Future<void> loginWithGoogle() async {
@@ -49,6 +56,8 @@ class LoginController extends GetxController {
         final UserCredential userCredential =
             await FirebaseAuth.instance.signInWithCredential(credential);
 
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool('isLoggedIn', true);
         isLoggedIn.value = true;
 
         final user = userCredential.user;
@@ -74,6 +83,9 @@ class LoginController extends GetxController {
       userName.value = '';
       userEmail.value = '';
       userPhoto.value = '';
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('isLoggedIn', false);
       isLoggedIn.value = false;
 
       Get.snackbar('Success', 'Logged out successfully');
