@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/pages/home/controller.dart';
-import 'package:ocash/services/googlesignin_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_icon_button.dart';
 import 'package:ocash/widgets/my_text.dart';
@@ -23,6 +22,7 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
   @override
   void initState() {
     super.initState();
+    balanceController.fetchBalance(); // Fetch balance on init
   }
 
   void toggleBalanceVisibility() {
@@ -78,7 +78,10 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
                                     fontSize: 32),
                               ),
                               TextSpan(
-                                text: isBalanceHidden ? '*******' : '1.700.000',
+                                text: isBalanceHidden
+                                    ? '*******'
+                                    : balanceController.balance.value
+                                        .toStringAsFixed(2),
                                 style: TextStyle(
                                     color: black,
                                     fontFamily: 'MontserratBold',

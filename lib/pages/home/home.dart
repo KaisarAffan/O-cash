@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/pages/home/controller.dart';
-import 'package:ocash/pages/login/controller.dart';
 import 'package:ocash/services/googlesignin_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/component/home_component/my_balance_card.dart';
