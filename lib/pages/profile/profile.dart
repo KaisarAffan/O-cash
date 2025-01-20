@@ -1,5 +1,7 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:ocash/utils/color_pallete.dart';
+import 'package:ocash/widgets/component/profile_component/my_profile_card.dart';
+import 'package:ocash/widgets/component/profile_component/my_profileactivity_button.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -9,8 +11,29 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: gray,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            child: Column(
+              children: [
+                Container(
+                  color: gray,
+                  child: MyProfileCard(),
+                ),
+                Container(
+                  color: black,
+                  child: MyProfileactivityButton(),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
