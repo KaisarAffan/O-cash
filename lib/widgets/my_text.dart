@@ -8,24 +8,23 @@ class MyText extends StatelessWidget {
   final TextAlign textAlign;
 
   const MyText({
-    super.key,
+    Key? key,
     required this.text,
     required this.fontsize,
     required this.fontfamily,
-    required this.color, required this.textAlign,
-  });
+    required this.color,
+    required this.textAlign,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        textAlign: textAlign,
-        text,
-        style: TextStyle(
-          fontFamily: fontfamily,
-          fontSize: fontsize,
-          color: color,
-        ),
+    return Text(
+      textAlign: textAlign,
+      text,
+      style: TextStyle(
+        fontFamily: fontfamily,
+        fontSize: fontsize,
+        color: color,
       ),
     );
   }
