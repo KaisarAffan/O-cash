@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ocash/pages/topup/controller.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_text.dart';
 import 'package:ocash/widgets/my_textfield.dart';
 
 class TopUpPage extends StatelessWidget {
-  const TopUpPage({super.key});
+  TopUpPage({super.key});
+
+  final TopUpController topUpController = Get.put(TopUpController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +52,9 @@ class TopUpPage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.account_balance, color: Colors.white, size: 40),
-                  SizedBox(width: 10),
+                  const Icon(Icons.account_balance,
+                      color: Colors.white, size: 40),
+                  const SizedBox(width: 10),
                   MyText(
                     text: "BANK BCA",
                     fontsize: 18,
@@ -57,7 +62,7 @@ class TopUpPage extends StatelessWidget {
                     color: white,
                     textAlign: TextAlign.left,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   const Icon(Icons.keyboard_arrow_down, color: Colors.white),
                 ],
               ),
@@ -72,7 +77,7 @@ class TopUpPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             MyEditText(
-              controller: CurrencyController().getController(),
+              controller: topUpController.currencyController,
               textInputType: TextInputType.number,
               hintText: "Masukkan nominal",
             ),
@@ -82,28 +87,28 @@ class TopUpPage extends StatelessWidget {
               children: [
                 MyButton(
                   text: "50,000",
-                  onPressed: () {},
+                  onPressed: () => topUpController.topUp(50000),
                   backgroundColor: gray,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
                 ),
                 MyButton(
                   text: "100,000",
-                  onPressed: () {},
+                  onPressed: () => topUpController.topUp(100000),
                   backgroundColor: gray,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
                 ),
                 MyButton(
                   text: "200,000",
-                  onPressed: () {},
+                  onPressed: () => topUpController.topUp(200000),
                   backgroundColor: gray,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
                 ),
                 MyButton(
                   text: "500,000",
-                  onPressed: () {},
+                  onPressed: () => topUpController.topUp(500000),
                   backgroundColor: gray,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
@@ -111,11 +116,23 @@ class TopUpPage extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: MyButton(
                 text: "Top Up",
-                onPressed: () {},
+                onPressed: () {
+                  final inputText = topUpController.currencyController.text
+                      .replaceAll("Rp.", "")
+                      .replaceAll(",", "")
+                      .trim();
+                  final amount = double.tryParse(inputText) ?? 0.0;
+                  if (amount > 0) {
+                    topUpController.topUp(amount);
+                  } else {
+                    Get.snackbar("Invalid", "Please enter a valid amount!");
+                  }
+                  topUpController.currencyController.text = "Rp.";
+                },
                 backgroundColor: Colors.orange,
                 padding: const EdgeInsets.symmetric(vertical: 12),
               ),
@@ -125,22 +142,4 @@ class TopUpPage extends StatelessWidget {
       ),
     );
   }
-}
-
-class CurrencyController {
-  final TextEditingController _controller = TextEditingController();
-
-  CurrencyController() {
-    _controller.text = "Rp.";
-    _controller.addListener(() {
-      if (!_controller.text.startsWith("Rp.")) {
-        _controller.text = "Rp.";
-        _controller.selection = TextSelection.fromPosition(
-          TextPosition(offset: _controller.text.length),
-        );
-      }
-    });
-  }
-
-  TextEditingController getController() => _controller;
 }
