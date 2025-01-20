@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ocash/pages/login/controller.dart';
 import 'package:ocash/routes/my_app_route.dart';
+import 'package:ocash/services/googlesignin_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 
 class Splashscreen extends StatelessWidget {
@@ -10,9 +11,10 @@ class Splashscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginController loginController = Get.put(LoginController());
+    final GoogleSignInController googleSignInController =
+        Get.put(GoogleSignInController());
     Future.delayed(const Duration(seconds: 3), () {
-      if (loginController.isLoggedIn.value) {
+      if (googleSignInController.isLoggedIn.value) {
         Get.offNamed(MyAppRoutes.dashboard);
       } else {
         Get.offNamed(MyAppRoutes.introPage);

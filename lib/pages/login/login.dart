@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:ocash/services/googlesignin_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_color.dart';
@@ -14,7 +15,8 @@ import 'controller.dart'; // Import your login controller
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
 
-  final LoginController loginController = Get.put(LoginController());
+  final GoogleSignInController googleSignInController =
+      Get.put(GoogleSignInController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class Login extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Obx(() {
-            if (loginController.isLoading.value) {
+            if (googleSignInController.isLoading.value) {
               return const CircularProgressIndicator();
             } else {
               return Column(
@@ -126,7 +128,7 @@ class Login extends StatelessWidget {
                         ],
                       ),
                       onPressed: () {
-                        loginController.loginWithGoogle();
+                        googleSignInController.loginWithGoogle();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: white,

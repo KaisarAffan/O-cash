@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ocash/pages/home/controller.dart';
 import 'package:ocash/pages/login/controller.dart';
+import 'package:ocash/services/googlesignin_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/component/home_component/my_balance_card.dart';
 import 'package:ocash/widgets/component/home_component/my_mainactivity_button.dart';
@@ -15,9 +18,27 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final LoginController loginController = Get.put(LoginController());
+  final GoogleSignInController googleSignInController =
+      Get.put(GoogleSignInController());
+  final BalanceController balanceController = Get.put(BalanceController());
+
+  @override
+  void initState() {
+    super.initState();
+    fetchBalance();
+  }
+
+  Future<void> fetchBalance() async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    if (userId != null) {
+      await balanceController.fetchBalance(userId);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+
     return Scaffold(
       backgroundColor: black,
       body: Center(
@@ -37,7 +58,7 @@ class _HomeState extends State<Home> {
                     ),
                     MyText(
                       text:
-                          '${loginController.auth.currentUser?.displayName ?? 'User'}',
+                          '${googleSignInController.auth.currentUser?.displayName ?? 'User'}',
                       fontsize: 24,
                       color: white,
                       fontfamily: "MontserratBold",
@@ -46,7 +67,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              MyBalanceCard(),
+              if (userId != null) MyBalanceCard(userId: userId),
               Container(
                 height: 105,
                 margin: EdgeInsets.symmetric(horizontal: 32),
