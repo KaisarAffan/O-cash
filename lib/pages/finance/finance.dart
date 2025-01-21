@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/component/finance_component/my_finantial_card.dart';
@@ -21,6 +22,8 @@ class _FinanceState extends State<Finance> {
 
   @override
   Widget build(BuildContext context) {
+    final String userId = FirebaseAuth.instance.currentUser!.uid;
+
     return Scaffold(
       backgroundColor: black,
       body: Container(
@@ -50,7 +53,9 @@ class _FinanceState extends State<Finance> {
               ),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-                child: const MyFinancialCard(),
+                child: MyFinancialCard(
+                  userId: userId,
+                ),
               ),
             ),
             // Button Income/Outcome
