@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ocash/pages/home/controller.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_icon_button.dart';
 import 'package:ocash/widgets/my_text.dart';
 
 class MyBalanceCard extends StatefulWidget {
-  const MyBalanceCard({super.key});
+  const MyBalanceCard({
+    super.key,
+  });
 
   @override
   State<MyBalanceCard> createState() => _MyBalanceCardState();
@@ -12,6 +16,14 @@ class MyBalanceCard extends StatefulWidget {
 
 class _MyBalanceCardState extends State<MyBalanceCard> {
   bool isBalanceHidden = false;
+
+  final BalanceController balanceController = Get.put(BalanceController());
+
+  @override
+  void initState() {
+    super.initState();
+    balanceController.fetchBalance(); // Fetch balance on init
+  }
 
   void toggleBalanceVisibility() {
     setState(() {
@@ -53,25 +65,32 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
                       fontfamily: "MontserratSemi",
                       textAlign: TextAlign.center,
                     ),
-                    RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Rp.',
-                            style: TextStyle(
-                                color: black,
-                                fontFamily: "MontserratMedi",
-                                fontSize: 32),
+                    Obx(
+                      () {
+                        return RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Rp.',
+                                style: TextStyle(
+                                    color: black,
+                                    fontFamily: "MontserratMedi",
+                                    fontSize: 32),
+                              ),
+                              TextSpan(
+                                text: isBalanceHidden
+                                    ? '*******'
+                                    : balanceController.balance.value
+                                        .toStringAsFixed(2),
+                                style: TextStyle(
+                                    color: black,
+                                    fontFamily: 'MontserratBold',
+                                    fontSize: 32),
+                              ),
+                            ],
                           ),
-                          TextSpan(
-                            text: isBalanceHidden ? '1.700.000' : '*******',
-                            style: TextStyle(
-                                color: black,
-                                fontFamily: 'MontserratBold',
-                                fontSize: 32),
-                          ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
                   ],
                 ),

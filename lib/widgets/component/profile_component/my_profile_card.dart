@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ocash/pages/login/controller.dart';
+import 'package:ocash/services/googlesignin_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_icon_button.dart';
 import 'package:ocash/widgets/my_text.dart';
@@ -10,7 +10,8 @@ class MyProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginController loginController = Get.put(LoginController());
+    final GoogleSignInController googleSignInController =
+        Get.put(GoogleSignInController());
 
     return Container(
       decoration: BoxDecoration(
@@ -30,19 +31,8 @@ class MyProfileCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: loginController.userPhoto.value.isNotEmpty
-                      ? NetworkImage(loginController.userPhoto.value)
-                      : null,
-                  child: loginController.userPhoto.value.isEmpty
-                      ? Text(
-                          loginController.userName.value.isNotEmpty
-                              ? loginController.userName.value
-                                  .substring(0, 2)
-                                  .toUpperCase()
-                              : 'NA',
-                          style: TextStyle(fontSize: 40),
-                        )
-                      : null,
+                  backgroundImage:
+                      NetworkImage(googleSignInController.photoURL),
                 ),
                 SizedBox(
                   width: 15,
@@ -52,14 +42,14 @@ class MyProfileCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyText(
-                      text: loginController.userName.value,
+                      text: googleSignInController.displayName,
                       fontsize: 24,
                       fontfamily: "MontserratBold",
                       color: white,
                       textAlign: TextAlign.center,
                     ),
                     MyText(
-                      text: loginController.userEmail.value,
+                      text: googleSignInController.email,
                       fontsize: 12,
                       fontfamily: "MontserratBold",
                       color: white,
