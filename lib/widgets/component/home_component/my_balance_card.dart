@@ -79,6 +79,7 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
                   icon: isBalanceHidden
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
+                  
                   text: '',
                   buttonWidth: 40,
                   buttonHeight: 40,

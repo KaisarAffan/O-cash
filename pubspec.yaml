@@ -40,6 +40,8 @@ dependencies:
   firebase_auth: ^5.4.0
   google_sign_in: ^6.2.2
   camera: any
+  firebase_messaging: ^15.2.0
+  flutter_local_notifications: ^18.0.1
 
 dev_dependencies:
   flutter_test:
