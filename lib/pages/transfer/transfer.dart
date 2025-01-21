@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/pages/transfer/controller.dart';
-import 'package:ocash/services/googlesignin_service.dart';
+import 'package:ocash/services/firestore_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_text.dart';
@@ -120,7 +120,7 @@ class TransferPage extends StatelessWidget {
                 text: "Transfer",
                 onPressed: () async {
                   String currentUserEmail =
-                      Get.find<GoogleSignInController>().currentUserEmail;
+                      Get.find<FirestoreServices>().currentUserEmail;
 
                   String? recipientEmail =
                       transferController.selectedRecipient.value;
