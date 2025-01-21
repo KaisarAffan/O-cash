@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/routes/my_app_page.dart';
 import 'package:ocash/routes/my_app_route.dart';
+import 'package:ocash/utils/push-notification/controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(); // Initialize Firebase here
+  await NotificationController.instance.initialize();
   runApp(const MyApp());
 }
 
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: MyAppPage.pages,
-      initialRoute: MyAppRoutes.loginPage, // Start at the login page
+      initialRoute: MyAppRoutes.splashScreen, // Start at the login page
     );
   }
 }

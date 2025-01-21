@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ocash/utils/color_pallete.dart';
+import 'package:ocash/widgets/my_text.dart';
 
 class MyButton extends StatelessWidget {
   final String text;
@@ -23,18 +25,16 @@ class MyButton extends StatelessWidget {
         padding: padding,
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w900,
-          fontSize: fontSize,
-        ),
-      ),
+      child: MyText(
+          text: text,
+          fontsize: 16,
+          fontfamily: "MontserratBold",
+          color: white,
+          textAlign: TextAlign.center),
     );
   }
 }
