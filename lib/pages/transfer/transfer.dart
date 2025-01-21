@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ocash/pages/transfer/controller.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_text.dart';
 import 'package:ocash/widgets/my_textfield.dart';
 
 class TransferPage extends StatelessWidget {
-  const TransferPage({super.key});
+  TransferPage({super.key});
+
+  final CurrencyController currencyController = CurrencyController();
+  final TransferController transferController = Get.put(TransferController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,41 +45,45 @@ class TransferPage extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.person, color: Colors.white, size: 40),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MyText(
-                          text: "Diana Dian",
-                          fontsize: 18,
-                          fontfamily: "MontserratBold",
-                          color: white,
-                          textAlign: TextAlign.left,
-                        ),
-                        MyText(
-                          text: "Bank Jateng",
-                          fontsize: 12,
-                          fontfamily: "MontserratSemiBold",
-                          color: white,
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Icon(Icons.keyboard_arrow_down, color: Colors.white),
-                ],
-              ),
-            ),
+            Obx(() {
+              // Observe the list of users from the controller
+              final users = transferController.users;
+
+              if (users.isEmpty) {
+                return const Center(
+                  child: CircularProgressIndicator(color: Colors.orange),
+                );
+              }
+
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: DropdownButton<String>(
+                  value: transferController.selectedRecipient.value,
+                  onChanged: (value) {
+                    transferController.selectedRecipient.value = value!;
+                  },
+                  isExpanded: true,
+                  underline: const SizedBox(),
+                  dropdownColor: Colors.grey[800],
+                  items: users.map((user) {
+                    return DropdownMenuItem<String>(
+                      value: user['email'], // Use email as the value
+                      child: MyText(
+                        text: "${user['name']} (${user['email']})",
+                        fontsize: 16,
+                        fontfamily: "MontserratSemiBold",
+                        color: white,
+                        textAlign: TextAlign.left,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              );
+            }),
             const SizedBox(height: 20),
             MyText(
               text: "Nominal",
@@ -83,13 +92,13 @@ class TransferPage extends StatelessWidget {
               color: white,
               textAlign: TextAlign.left,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             MyEditText(
-              controller: CurrencyController().getController(),
+              controller: currencyController.getController(),
               textInputType: TextInputType.number,
               hintText: "Masukkan nominal",
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             MyText(
               text: "Add message",
               fontsize: 18,
@@ -97,31 +106,54 @@ class TransferPage extends StatelessWidget {
               color: white,
               textAlign: TextAlign.left,
             ),
-            SizedBox(height: 10),
-            Stack(
-              children: [
-                MyEditText(
-                  controller: null,
-                  textInputType: TextInputType.text,
-                  hintText: "Type your message here",
-                ),
-                Positioned(
-                  right: 10,
-                  top: 16,
-                  bottom: 18,
-                  child: Icon(
-                    Icons.edit_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+            const SizedBox(height: 10),
+            MyEditText(
+              controller: transferController.messageController,
+              textInputType: TextInputType.text,
+              hintText: "Type your message here",
             ),
             const Spacer(),
             Container(
               width: MediaQuery.of(context).size.width,
               child: MyButton(
                 text: "Transfer",
-                onPressed: () {},
+                onPressed: () async {
+                  String? recipientEmail =
+                      transferController.selectedRecipient.value;
+
+                  if (recipientEmail == null) {
+                    Get.snackbar("Error", "Please select a recipient!");
+                    return;
+                  }
+
+                  double amount = double.tryParse(currencyController
+                          .getController()
+                          .text
+                          .replaceAll("Rp.", "")
+                          .trim()) ??
+                      0.0;
+
+                  if (amount <= 0) {
+                    Get.snackbar("Error", "Please enter a valid amount!");
+                    return;
+                  }
+
+                  String message = transferController.messageController.text;
+
+                  bool success = await transferController.performTransfer(
+                    recipientEmail: recipientEmail,
+                    amount: amount,
+                    message: message,
+                  );
+
+                  if (success) {
+                    Get.snackbar("Success", "Transfer completed successfully!");
+                    currencyController.getController().clear();
+                    transferController.messageController.clear();
+                  } else {
+                    Get.snackbar("Error", "Transfer failed. Please try again.");
+                  }
+                },
                 backgroundColor: Colors.orange,
                 padding: const EdgeInsets.symmetric(vertical: 12),
               ),

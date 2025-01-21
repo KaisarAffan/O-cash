@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ocash/pages/login/controller.dart';
+import 'package:ocash/services/googlesignin_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_profile_button.dart';
 import 'package:ocash/widgets/my_color.dart';
@@ -10,7 +10,8 @@ class MyProfileactivityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginController loginController = Get.put(LoginController());
+    final GoogleSignInController googleSignInController =
+        Get.put(GoogleSignInController());
 
     return Container(
       decoration: BoxDecoration(
@@ -87,7 +88,7 @@ class MyProfileactivityButton extends StatelessWidget {
                 MyProfileButton(
                   text: "Log Out",
                   onPressed: () {
-                    loginController.logout();
+                    googleSignInController.logout();
                   },
                   padding: EdgeInsets.all(15),
                   border: BorderRadius.only(

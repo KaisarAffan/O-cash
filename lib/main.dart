@@ -6,7 +6,7 @@ import 'package:ocash/routes/my_app_route.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(); // Initialize Firebase here
+  await Firebase.initializeApp(); 
   runApp(const MyApp());
 }
 
