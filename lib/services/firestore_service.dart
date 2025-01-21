@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ocash/routes/my_app_route.dart';
@@ -14,6 +15,7 @@ class FirestoreServices extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseMessaging messaging = FirebaseMessaging.instance;
+  final _localNotification = FlutterLocalNotificationsPlugin();
 
   @override
   void onInit() {
@@ -155,6 +157,28 @@ class FirestoreServices extends GetxController {
       Get.snackbar('Error', 'Logout failed: $e');
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<void> showNotification(RemoteMessage message) async {
+    RemoteNotification? notification = message.notification;
+    AndroidNotification? android = message.notification?.android;
+    if (notification != null && android != null) {
+      await _localNotification.show(
+        notification.hashCode,
+        notification.title,
+        notification.body,
+        NotificationDetails(
+          android: AndroidNotificationDetails(
+              'high_importance_channel', 'High Importance Notifications',
+              channelDescription:
+                  'This channel is used for importance notifications!',
+              importance: Importance.high,
+              priority: Priority.high,
+              icon: '@mipmap/ic_launcher'),
+        ),
+        payload: message.data.toString(),
+      );
     }
   }
 }
