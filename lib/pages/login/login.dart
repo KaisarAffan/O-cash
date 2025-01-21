@@ -3,20 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:ocash/services/googlesignin_service.dart';
+import 'package:ocash/services/firestore_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_color.dart';
 import 'package:ocash/widgets/my_text.dart';
 import 'package:ocash/widgets/my_textfield.dart';
 
-import 'controller.dart'; // Import your login controller
-
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
 
-  final GoogleSignInController googleSignInController =
-      Get.put(GoogleSignInController());
+  final FirestoreServices googleSignInController = Get.put(FirestoreServices());
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ocash/services/googlesignin_service.dart';
+import 'package:ocash/services/firestore_service.dart';
 
 class TransferController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -36,9 +36,8 @@ class TransferController extends GetxController {
     required String message,
   }) async {
     // Replace these with the current authenticated user's ID and email
-    String currentUserId = Get.find<GoogleSignInController>().currentUserId;
-    String currentUserEmail =
-        Get.find<GoogleSignInController>().currentUserEmail;
+    String currentUserId = Get.find<FirestoreServices>().currentUserId;
+    String currentUserEmail = Get.find<FirestoreServices>().currentUserEmail;
 
     try {
       // Get recipient data
