@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -27,6 +28,26 @@ class NotificationController {
     // Get FCM token
     final token = await _messaging.getToken();
     print('FCM Token $token');
+
+    if (token != null) {
+      // Save the token to Firestore
+      await _saveTokenToFirestore(token);
+    }
+  }
+
+  Future<void> _saveTokenToFirestore(String token) async {
+    String userId = 'exampleUserId'; // Replace with actual user ID
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .set({
+            'fcm_token': token,
+          }, SetOptions(merge: true));
+      print('Token saved to Firestore');
+    } catch (e) {
+      print('Failed to save token: $e');
+    }
   }
 
   Future<void> _requestpermission() async {
