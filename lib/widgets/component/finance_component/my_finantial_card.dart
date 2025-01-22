@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/my_text.dart';
 
@@ -19,6 +20,15 @@ class _MyFinancialCardState extends State<MyFinancialCard> {
     setState(() {
       isBalanceHidden = !isBalanceHidden;
     });
+  }
+
+  String formatCurrency(double amount) {
+    final formatter = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp.',
+      decimalDigits: 0,
+    );
+    return formatter.format(amount);
   }
 
   @override
@@ -62,23 +72,23 @@ class _MyFinancialCardState extends State<MyFinancialCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         MyText(
-                            text: 'Financial records',
-                            fontsize: 16,
-                            fontfamily: 'MontserratBold',
-                            color: white,
-                            textAlign: TextAlign.start),
+                          text: 'Financial records',
+                          fontsize: 16,
+                          fontfamily: 'MontserratBold',
+                          color: white,
+                          textAlign: TextAlign.start,
+                        ),
                         MyText(
-                            text: '1 Jan 2025 - 31 Jan 2025',
-                            fontsize: 10,
-                            fontfamily: 'MontserratMedi',
-                            color: white,
-                            textAlign: TextAlign.start),
+                          text: '1 Jan 2025 - 31 Jan 2025',
+                          fontsize: 10,
+                          fontfamily: 'MontserratMedi',
+                          color: white,
+                          textAlign: TextAlign.start,
+                        ),
                       ],
                     ),
                     GestureDetector(
-                      onTap: () {
-                        toggleBalanceVisibility();
-                      },
+                      onTap: toggleBalanceVisibility,
                       child: Icon(
                         isBalanceHidden
                             ? Icons.visibility_outlined
@@ -86,7 +96,7 @@ class _MyFinancialCardState extends State<MyFinancialCard> {
                         size: 30,
                         color: white,
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Row(
@@ -104,29 +114,24 @@ class _MyFinancialCardState extends State<MyFinancialCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         MyText(
-                            text: 'Balance',
-                            fontsize: 14,
-                            fontfamily: 'MontserratMedi',
-                            color: white,
-                            textAlign: TextAlign.start),
+                          text: 'Balance',
+                          fontsize: 14,
+                          fontfamily: 'MontserratMedi',
+                          color: white,
+                          textAlign: TextAlign.start,
+                        ),
                         RichText(
                           text: TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                text: 'Rp.',
-                                style: TextStyle(
-                                    color: white,
-                                    fontFamily: "MontserratMedi",
-                                    fontSize: 16),
-                              ),
-                              TextSpan(
                                 text: isBalanceHidden
-                                    ? balance.toStringAsFixed(0)
-                                    : '*******',
+                                    ? '*******'
+                                    : formatCurrency(balance),
                                 style: TextStyle(
-                                    color: white,
-                                    fontFamily: 'MontserratBold',
-                                    fontSize: 16),
+                                  color: white,
+                                  fontFamily: 'MontserratBold',
+                                  fontSize: 16,
+                                ),
                               ),
                             ],
                           ),
@@ -147,8 +152,10 @@ class _MyFinancialCardState extends State<MyFinancialCard> {
     return Expanded(
       child: Container(
         height: 64,
-        decoration:
-            BoxDecoration(color: black, borderRadius: BorderRadius.circular(8)),
+        decoration: BoxDecoration(
+          color: black,
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
@@ -156,29 +163,23 @@ class _MyFinancialCardState extends State<MyFinancialCard> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MyText(
-                  text: title,
-                  fontsize: 14,
-                  fontfamily: 'MontserratMedi',
-                  color: white,
-                  textAlign: TextAlign.start),
+                text: title,
+                fontsize: 14,
+                fontfamily: 'MontserratMedi',
+                color: white,
+                textAlign: TextAlign.start,
+              ),
               RichText(
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'Rp.',
+                      text:
+                          isBalanceHidden ? '*******' : formatCurrency(amount),
                       style: TextStyle(
-                          color: white,
-                          fontFamily: "MontserratMedi",
-                          fontSize: 16),
-                    ),
-                    TextSpan(
-                      text: isBalanceHidden
-                          ? amount.toStringAsFixed(0)
-                          : '*******',
-                      style: TextStyle(
-                          color: white,
-                          fontFamily: 'MontserratBold',
-                          fontSize: 16),
+                        color: white,
+                        fontFamily: 'MontserratBold',
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),

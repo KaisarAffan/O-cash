@@ -89,11 +89,13 @@ class TransferController extends GetxController {
         transaction.set(
           _firestore.collection("outcome").doc(),
           {
+            "title": "Transfer to $recipientEmail",
             "userId": currentUserId,
             "amount": amount,
             "recipient": recipientEmail,
             "message": message,
             "timestamp": timestamp,
+            "type": "Transfer",
           },
         );
 
@@ -101,11 +103,13 @@ class TransferController extends GetxController {
         transaction.set(
           _firestore.collection("income").doc(),
           {
+            "title": "Transfer from $currentUserEmail",
             "userId": recipientId,
             "amount": amount,
             "sender": currentUserEmail,
             "message": message,
             "timestamp": timestamp,
+            "type": "Transfer",
           },
         );
       });

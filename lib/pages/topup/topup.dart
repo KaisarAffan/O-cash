@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:ocash/pages/topup/controller.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_button.dart';
@@ -10,9 +11,25 @@ class TopUpPage extends StatelessWidget {
   TopUpPage({super.key});
 
   final TopUpController topUpController = Get.put(TopUpController());
+  final NumberFormat formatter =
+      NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0);
 
   @override
   Widget build(BuildContext context) {
+    topUpController.currencyController.addListener(() {
+      final text = topUpController.currencyController.text
+          .replaceAll("Rp.", "")
+          .replaceAll(".", "")
+          .trim();
+      if (text.isNotEmpty) {
+        final numericValue = double.tryParse(text) ?? 0;
+        final formatted = formatter.format(numericValue);
+        topUpController.currencyController.value = TextEditingValue(
+          text: formatted,
+          selection: TextSelection.collapsed(offset: formatted.length),
+        );
+      }
+    });
     return Scaffold(
       backgroundColor: black,
       appBar: AppBar(
@@ -87,28 +104,40 @@ class TopUpPage extends StatelessWidget {
               children: [
                 MyButton(
                   text: "50,000",
-                  onPressed: () => topUpController.topUp(50000),
+                  onPressed: () {
+                    topUpController.currencyController.text =
+                        formatter.format(50000);
+                  },
                   backgroundColor: gray,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
                 ),
                 MyButton(
                   text: "100,000",
-                  onPressed: () => topUpController.topUp(100000),
+                  onPressed: () {
+                    topUpController.currencyController.text =
+                        formatter.format(100000);
+                  },
                   backgroundColor: gray,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
                 ),
                 MyButton(
                   text: "200,000",
-                  onPressed: () => topUpController.topUp(200000),
+                  onPressed: () {
+                    topUpController.currencyController.text =
+                        formatter.format(200000);
+                  },
                   backgroundColor: gray,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
                 ),
                 MyButton(
                   text: "500,000",
-                  onPressed: () => topUpController.topUp(500000),
+                  onPressed: () {
+                    topUpController.currencyController.text =
+                        formatter.format(500000);
+                  },
                   backgroundColor: gray,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
@@ -123,15 +152,18 @@ class TopUpPage extends StatelessWidget {
                 onPressed: () {
                   final inputText = topUpController.currencyController.text
                       .replaceAll("Rp.", "")
-                      .replaceAll(",", "")
+                      .replaceAll(".", "")
                       .trim();
                   final amount = double.tryParse(inputText) ?? 0.0;
                   if (amount > 0) {
                     topUpController.topUp(amount);
+                    Get.snackbar("Success",
+                        "Top up of ${formatter.format(amount)} completed!");
                   } else {
                     Get.snackbar("Invalid", "Please enter a valid amount!");
                   }
-                  topUpController.currencyController.text = "Rp.";
+                  topUpController.currencyController.text =
+                      ""; // Clear text field after top up
                 },
                 backgroundColor: Colors.orange,
                 padding: const EdgeInsets.symmetric(vertical: 12),

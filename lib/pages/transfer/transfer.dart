@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:ocash/pages/transfer/controller.dart';
 import 'package:ocash/services/firestore_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
@@ -10,11 +11,30 @@ import 'package:ocash/widgets/my_textfield.dart';
 class TransferPage extends StatelessWidget {
   TransferPage({super.key});
 
-  final CurrencyController currencyController = CurrencyController();
+  final TextEditingController nominalController =
+      Get.put(TextEditingController());
   final TransferController transferController = Get.put(TransferController());
+  final NumberFormat formatter =
+      NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0);
 
   @override
   Widget build(BuildContext context) {
+    nominalController.text = "Rp.";
+    nominalController.addListener(() {
+      String text = nominalController.text
+          .replaceAll("Rp.", "")
+          .replaceAll(".", "")
+          .trim();
+      if (text.isNotEmpty) {
+        final numericValue = double.tryParse(text) ?? 0;
+        final formatted = formatter.format(numericValue);
+        nominalController.value = TextEditingValue(
+          text: formatted,
+          selection: TextSelection.collapsed(offset: formatted.length),
+        );
+      }
+    });
+
     return Scaffold(
       backgroundColor: black,
       appBar: AppBar(
@@ -95,7 +115,7 @@ class TransferPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             MyEditText(
-              controller: currencyController.getController(),
+              controller: nominalController,
               textInputType: TextInputType.number,
               hintText: "Masukkan nominal",
             ),
@@ -135,9 +155,7 @@ class TransferPage extends StatelessWidget {
                     return;
                   }
 
-                  double amount = double.tryParse(currencyController
-                          .getController()
-                          .text
+                  double amount = double.tryParse(nominalController.text
                           .replaceAll("Rp.", "")
                           .trim()) ??
                       0.0;
@@ -157,7 +175,7 @@ class TransferPage extends StatelessWidget {
 
                   if (success) {
                     Get.snackbar("Success", "Transfer completed successfully!");
-                    currencyController.getController().clear();
+                    nominalController.clear();
                     transferController.messageController.clear();
                   } else {
                     Get.snackbar("Error", "Transfer failed. Please try again.");
@@ -172,22 +190,4 @@ class TransferPage extends StatelessWidget {
       ),
     );
   }
-}
-
-class CurrencyController {
-  final TextEditingController _controller = TextEditingController();
-
-  CurrencyController() {
-    _controller.text = "Rp.";
-    _controller.addListener(() {
-      if (!_controller.text.startsWith("Rp.")) {
-        _controller.text = "Rp.";
-        _controller.selection = TextSelection.fromPosition(
-          TextPosition(offset: _controller.text.length),
-        );
-      }
-    });
-  }
-
-  TextEditingController getController() => _controller;
 }
