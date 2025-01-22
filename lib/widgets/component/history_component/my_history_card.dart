@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:ocash/utils/color_pallete.dart';
+import 'package:ocash/widgets/my_color.dart';
 import 'package:ocash/widgets/my_text.dart';
 
 class MyHistoryCard extends StatelessWidget {
   final String title;
-  final String? status;
-  final String time;
+  final String type;
+  final String timeHours;
+  final String timeDay;
   final String amount;
   final IconData icon;
 
   const MyHistoryCard({
     super.key,
     required this.title,
-    this.status,
-    required this.time,
+    required this.type,
+    required this.timeHours,
+    required this.timeDay,
     required this.amount,
     this.icon = Icons.add,
   });
@@ -59,14 +62,13 @@ class MyHistoryCard extends StatelessWidget {
                     color: Colors.white,
                     textAlign: TextAlign.left,
                   ),
-                  if (status != null)
-                    MyText(
-                      text: status!,
-                      fontsize: 14,
-                      fontfamily: "MontserratSemi",
-                      color: Colors.grey,
-                      textAlign: TextAlign.left,
-                    ),
+                  MyText(
+                    text: type,
+                    fontsize: 14,
+                    fontfamily: "MontserratSemi",
+                    color: Colors.grey,
+                    textAlign: TextAlign.left,
+                  ),
                   MyText(
                     text: amount,
                     fontsize: 16,
@@ -77,12 +79,27 @@ class MyHistoryCard extends StatelessWidget {
                 ],
               ),
             ),
-            MyText(
-              text: time,
-              fontsize: 16,
-              fontfamily: "MontserratMedi",
-              color: Colors.grey,
-              textAlign: TextAlign.right,
+            Container(
+              width: 120,
+              height: 80,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MyText(
+                    text: timeHours,
+                    fontsize: 14,
+                    fontfamily: "MontserratMedi",
+                    color: Colors.grey,
+                    textAlign: TextAlign.right,
+                  ),
+                  MyText(
+                      text: timeDay,
+                      fontsize: 14,
+                      fontfamily: "MontserratMedi",
+                      color: Colors.grey,
+                      textAlign: TextAlign.right),
+                ],
+              ),
             ),
           ],
         ),

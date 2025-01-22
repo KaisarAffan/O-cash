@@ -80,8 +80,7 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
                               TextSpan(
                                 text: isBalanceHidden
                                     ? '*******'
-                                    : balanceController.balance.value
-                                        .toStringAsFixed(2),
+                                    : balanceController.formattedBalance.value,
                                 style: TextStyle(
                                     color: black,
                                     fontFamily: 'MontserratBold',
@@ -98,7 +97,6 @@ class _MyBalanceCardState extends State<MyBalanceCard> {
                   icon: isBalanceHidden
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
-                  
                   text: '',
                   buttonWidth: 40,
                   buttonHeight: 40,
