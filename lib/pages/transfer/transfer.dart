@@ -155,7 +155,8 @@ class TransferPage extends StatelessWidget {
                     return;
                   }
 
-                  double amount = double.tryParse(nominalController.text
+                  double amount = double.tryParse(transferController
+                          .currencyController.text
                           .replaceAll("Rp.", "")
                           .trim()) ??
                       0.0;
