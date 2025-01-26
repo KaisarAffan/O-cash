@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -11,24 +12,22 @@ import 'package:ocash/widgets/my_textfield.dart';
 class TransferPage extends StatelessWidget {
   TransferPage({super.key});
 
-  final TextEditingController nominalController =
-      Get.put(TextEditingController());
   final TransferController transferController = Get.put(TransferController());
   final NumberFormat formatter =
       NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0);
 
   @override
   Widget build(BuildContext context) {
-    nominalController.text = "Rp.";
-    nominalController.addListener(() {
-      String text = nominalController.text
+    transferController.currencyController.text = "Rp.";
+    transferController.currencyController.addListener(() {
+      String text = transferController.currencyController.text
           .replaceAll("Rp.", "")
           .replaceAll(".", "")
           .trim();
       if (text.isNotEmpty) {
         final numericValue = double.tryParse(text) ?? 0;
         final formatted = formatter.format(numericValue);
-        nominalController.value = TextEditingValue(
+        transferController.currencyController.value = TextEditingValue(
           text: formatted,
           selection: TextSelection.collapsed(offset: formatted.length),
         );
@@ -115,7 +114,7 @@ class TransferPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             MyEditText(
-              controller: nominalController,
+              controller: transferController.currencyController,
               textInputType: TextInputType.number,
               hintText: "Masukkan nominal",
             ),
@@ -158,6 +157,7 @@ class TransferPage extends StatelessWidget {
                   double amount = double.tryParse(transferController
                           .currencyController.text
                           .replaceAll("Rp.", "")
+                          .replaceAll(".", "")
                           .trim()) ??
                       0.0;
 
@@ -176,7 +176,7 @@ class TransferPage extends StatelessWidget {
 
                   if (success) {
                     Get.snackbar("Success", "Transfer completed successfully!");
-                    nominalController.clear();
+                    transferController.currencyController.clear();
                     transferController.messageController.clear();
                   } else {
                     Get.snackbar("Error", "Transfer failed. Please try again.");
