@@ -1,28 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:ocash/services/firestore_service.dart';
 
 class TransferController extends GetxController {
   final TextEditingController currencyController = TextEditingController();
+  final TextEditingController messageController = TextEditingController();
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   TransferController() {
     currencyController.text = "Rp.";
-    currencyController.addListener(() {
-      if (!currencyController.text.startsWith("Rp.")) {
-        currencyController.text = "Rp.";
-        currencyController.selection = TextSelection.fromPosition(
-          TextPosition(offset: currencyController.text.length),
-        );
-      }
-    });
   }
 
   var users = <Map<String, dynamic>>[].obs;
   var selectedRecipient = Rxn<String>();
-  final messageController = TextEditingController();
 
   @override
   void onInit() {
@@ -41,6 +34,20 @@ class TransferController extends GetxController {
           .toList();
     } catch (e) {
       Get.snackbar("Error", "Failed to fetch users: $e");
+    }
+  }
+
+  void updateCurrency(String value) {
+    String text = value.replaceAll("Rp.", "").replaceAll(".", "").trim();
+    if (text.isNotEmpty) {
+      final numericValue = double.tryParse(text) ?? 0;
+      final formatted =
+          NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0)
+              .format(numericValue);
+      currencyController.value = TextEditingValue(
+        text: formatted,
+        selection: TextSelection.collapsed(offset: formatted.length),
+      );
     }
   }
 

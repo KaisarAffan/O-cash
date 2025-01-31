@@ -45,6 +45,7 @@ dependencies:
   firebase_messaging: ^15.2.0
   flutter_local_notifications: ^18.0.1
   intl: ^0.18.0
+  rxdart: ^0.27.2
 
 dev_dependencies:
   flutter_test:
@@ -56,11 +57,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.3
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/subtract.png"
 flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

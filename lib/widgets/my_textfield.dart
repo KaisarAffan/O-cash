@@ -12,6 +12,7 @@ class MyEditText extends StatefulWidget {
   final Color fillColor;
   final Color textColor;
   final Color hintColor;
+  final ValueChanged<String>? onChanged;
 
   const MyEditText({
     Key? key,
@@ -26,6 +27,7 @@ class MyEditText extends StatefulWidget {
     this.fillColor = Colors.black,
     this.textColor = Colors.white,
     this.hintColor = Colors.grey,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -41,6 +43,7 @@ class _MyEditTextState extends State<MyEditText> {
       controller: widget.controller,
       obscureText: widget.isPassword && !_isPasswordVisible,
       keyboardType: widget.textInputType,
+      onChanged: widget.onChanged,
       style: TextStyle(
           color: widget.textColor, fontFamily: "MontserratBold", fontSize: 16),
       decoration: InputDecoration(

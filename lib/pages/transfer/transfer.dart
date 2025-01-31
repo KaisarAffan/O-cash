@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -18,22 +17,6 @@ class TransferPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    transferController.currencyController.text = "Rp.";
-    transferController.currencyController.addListener(() {
-      String text = transferController.currencyController.text
-          .replaceAll("Rp.", "")
-          .replaceAll(".", "")
-          .trim();
-      if (text.isNotEmpty) {
-        final numericValue = double.tryParse(text) ?? 0;
-        final formatted = formatter.format(numericValue);
-        transferController.currencyController.value = TextEditingValue(
-          text: formatted,
-          selection: TextSelection.collapsed(offset: formatted.length),
-        );
-      }
-    });
-
     return Scaffold(
       backgroundColor: black,
       appBar: AppBar(
@@ -117,6 +100,9 @@ class TransferPage extends StatelessWidget {
               controller: transferController.currencyController,
               textInputType: TextInputType.number,
               hintText: "Masukkan nominal",
+              onChanged: (value) {
+                transferController.updateCurrency(value);
+              },
             ),
             const SizedBox(height: 20),
             MyText(

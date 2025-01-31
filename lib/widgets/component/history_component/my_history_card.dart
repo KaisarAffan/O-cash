@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ocash/utils/color_pallete.dart';
-import 'package:ocash/widgets/my_color.dart';
 import 'package:ocash/widgets/my_text.dart';
 
 class MyHistoryCard extends StatelessWidget {
