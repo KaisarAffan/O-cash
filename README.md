@@ -2,8 +2,9 @@
 <p align="center">
     <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi%20there;I'm+Kaisar+Affan+Danendra;A+Passionate+Android+Dev+From+Indonesia&font=Fira%20Code&color=%23D62F79&center=true&width=500&height=30">
 </p>
+
 <p align="center">
-    <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi%20there;I'm+Satria+Jagad+Samudra;A+Passionate+Android+Dev+From+Indonesia&font=Fira%20Code&color=%23D62F79&center=true&width=500&height=30">
+    <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi%20there;I'm+Satria+Jagad+Samudra;A+Passionate+Programmer+From+Indonesia;A+Problem+Solver+Wanna+Be;&font=Fira%20Code&color=%23D62F79&center=true&width=500&height=30">
 </p>
 <br>
 
@@ -31,7 +32,7 @@
 </div>
 
 
-  <h3 align="left">My Favorite Room:</h3>
+  <h3 align="left">Kaisar Favorite Room:</h3>
 <div align="left"> 
       <a target="_blank" href="https://open.spotify.com/user/nzphd5tct2wqqaq1oo0a7jvbk?si=ncPlV88ETEWR_qubj96ocA"><img src="https://img.shields.io/badge/Spotify-000000?style=for-the-badge&logo=spotify&logoColor=1ED760"></a>
 </div>
