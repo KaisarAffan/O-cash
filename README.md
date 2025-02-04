@@ -2,6 +2,9 @@
 <p align="center">
     <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi%20there;I'm+Kaisar+Affan+Danendra;A+Passionate+Android+Dev+From+Indonesia&font=Fira%20Code&color=%23D62F79&center=true&width=500&height=30">
 </p>
+<p align="center">
+    <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi%20there;I'm+Satria+Jagad+Samudra;A+Passionate+Android+Dev+From+Indonesia&font=Fira%20Code&color=%23D62F79&center=true&width=500&height=30">
+</p>
 <br>
 
 <hr>
@@ -10,12 +13,20 @@
 - 🌱 I’m currently learning flutter and android development 
 
 - 📫 How to reach me kaisar.affan2@gmail.com
+- 📫 How to reach me satriajagads816@gmail.com
 
 
-<h3 align="left">Connect with me:</h3>
+<h3 align="left">Connect with Kaisar :</h3>
 <div align="left"> 
     <a target="_blank" href="https://www.linkedin.com/in/kaisar-affan-bb8a90293/"><img src="https://img.shields.io/badge/-LinkedIn-000000?style=for-the-badge&logo=Linkedin&logoColor=0077B5"></a>
-  <a target="_blank" href="https://www.instagram.com/lunna.ownn/"><img src="https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=instagram&logoColor=E4405F"></a>
+  <a target="_blank" href="https://www.instagram.com/luna.ownn/"><img src="https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=instagram&logoColor=E4405F"></a>
+
+</div>
+
+<h3 align="left">Connect with Satria :</h3>
+<div align="left"> 
+    <a target="_blank" href="https://www.linkedin.com/in/satria-samudra-97ba9b293/"><img src="https://img.shields.io/badge/-LinkedIn-000000?style=for-the-badge&logo=Linkedin&logoColor=0077B5"></a>
+  <a target="_blank" href="https://www.instagram.com/anzuhaa/"><img src="https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=instagram&logoColor=E4405F"></a>
 
 </div>
 
