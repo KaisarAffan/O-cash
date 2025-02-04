@@ -42,6 +42,9 @@ dependencies:
   google_sign_in: ^6.2.2
   shared_preferences: ^2.0.6
   camera: any
+  firebase_messaging: ^15.2.0
+  flutter_local_notifications: ^18.0.1
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

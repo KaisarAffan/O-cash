@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ocash/pages/home/controller.dart';
-import 'package:ocash/services/googlesignin_service.dart';
+import 'package:ocash/services/firestore_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/component/home_component/my_balance_card.dart';
 import 'package:ocash/widgets/component/home_component/my_mainactivity_button.dart';
@@ -17,8 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final GoogleSignInController googleSignInController =
-      Get.put(GoogleSignInController());
+  final FirestoreServices googleSignInController = Get.put(FirestoreServices());
   final BalanceController balanceController = Get.put(BalanceController());
 
   @override

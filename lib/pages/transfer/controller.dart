@@ -1,10 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ocash/services/googlesignin_service.dart';
+import 'package:ocash/services/firestore_service.dart';
 
 class TransferController extends GetxController {
+  final TextEditingController currencyController = TextEditingController();
+
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  TransferController() {
+    currencyController.text = "Rp.";
+    currencyController.addListener(() {
+      if (!currencyController.text.startsWith("Rp.")) {
+        currencyController.text = "Rp.";
+        currencyController.selection = TextSelection.fromPosition(
+          TextPosition(offset: currencyController.text.length),
+        );
+      }
+    });
+  }
 
   var users = <Map<String, dynamic>>[].obs;
   var selectedRecipient = Rxn<String>();
@@ -36,9 +50,9 @@ class TransferController extends GetxController {
     required String message,
   }) async {
     // Replace these with the current authenticated user's ID and email
-    String currentUserId = Get.find<GoogleSignInController>().currentUserId;
-    String currentUserEmail =
-        Get.find<GoogleSignInController>().currentUserEmail;
+    String currentUserId = Get.find<FirestoreServices>().currentUserId;
+    String currentUserEmail = Get.find<FirestoreServices>().currentUserEmail;
+    String currentUserName = Get.find<FirestoreServices>().displayName;
 
     try {
       // Get recipient data
@@ -90,11 +104,13 @@ class TransferController extends GetxController {
         transaction.set(
           _firestore.collection("outcome").doc(),
           {
+            "title": "Transfer to $recipientEmail",
             "userId": currentUserId,
             "amount": amount,
             "recipient": recipientEmail,
             "message": message,
             "timestamp": timestamp,
+            "type": "Transfer",
           },
         );
 
@@ -102,11 +118,13 @@ class TransferController extends GetxController {
         transaction.set(
           _firestore.collection("income").doc(),
           {
+            "title": "Transfer from $currentUserName",
             "userId": recipientId,
             "amount": amount,
             "sender": currentUserEmail,
             "message": message,
             "timestamp": timestamp,
+            "type": "Transfer",
           },
         );
       });

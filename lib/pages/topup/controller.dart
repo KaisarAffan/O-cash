@@ -45,6 +45,7 @@ class TopUpController extends GetxController {
 
           // Add a record in the income table
           final incomeData = {
+            "title": "Top up from Bank BCA to O'Cash",
             'userId': userId,
             'amount': amount,
             'timestamp': FieldValue.serverTimestamp(),
