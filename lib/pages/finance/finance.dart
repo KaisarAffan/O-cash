@@ -58,7 +58,7 @@ class _FinanceState extends State<Finance> {
                 ),
               ),
             ),
-            // Button Income/Outcome
+            
           ],
         ),
       ),

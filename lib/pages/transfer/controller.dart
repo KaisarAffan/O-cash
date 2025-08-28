@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:ocash/services/firestore_service.dart';
+import 'package:ocash/services/user_service.dart';
 
 class TransferController extends GetxController {
   final TextEditingController currencyController = TextEditingController();

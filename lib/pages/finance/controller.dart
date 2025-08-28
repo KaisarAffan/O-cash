@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class FinancialRecordsCard extends StatefulWidget {
   @override
@@ -24,16 +24,15 @@ class _FinancialRecordsCardState extends State<FinancialRecordsCard> {
     final startDate = DateTime(2025, 1, 1);
     final endDate = DateTime(2025, 1, 31, 23, 59, 59);
 
-    // Fetch income data
     final incomeQuery = await firestore
-        .collection('income') // Adjust collection name if needed
+        .collection('income')
         .where('userId', isEqualTo: userId)
         .where('timestamp', isGreaterThanOrEqualTo: startDate)
         .where('timestamp', isLessThanOrEqualTo: endDate)
         .get();
 
     final outcomeQuery = await firestore
-        .collection('outcome') // Adjust collection name if needed
+        .collection('outcome')
         .where('userId', isEqualTo: userId)
         .where('timestamp', isGreaterThanOrEqualTo: startDate)
         .where('timestamp', isLessThanOrEqualTo: endDate)
@@ -58,7 +57,7 @@ class _FinancialRecordsCardState extends State<FinancialRecordsCard> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
     return Card(
       color: Colors.black,
       child: Padding(

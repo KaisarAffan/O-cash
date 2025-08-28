@@ -86,11 +86,9 @@ class FirestoreServices extends GetxController {
         return;
       }
 
-      // Get FCM token
       final token = await messaging.getToken();
       print('FCM Token $token');
 
-      // Update SharedPreferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool('isLoggedIn', true);
       isLoggedIn.value = true;

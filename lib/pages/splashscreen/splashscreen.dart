@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ocash/routes/my_app_route.dart';
-import 'package:ocash/services/firestore_service.dart';
+import 'package:ocash/services/user_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 
 class Splashscreen extends StatelessWidget {

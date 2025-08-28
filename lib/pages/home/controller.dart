@@ -25,9 +25,9 @@ class BalanceController extends GetxController {
         if (userDoc.exists) {
           balance.value = (userDoc['balance'] as num).toDouble();
           formattedBalance.value =
-              formatBalance(balance.value); // Format balance
+              formatBalance(balance.value); 
         } else {
-          balance.value = 0.0; // Set balance to 0 if not found
+          balance.value = 0.0; 
           formattedBalance.value = formatBalance(balance.value);
         }
       } catch (e) {

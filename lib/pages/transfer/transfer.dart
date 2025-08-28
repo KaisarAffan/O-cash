@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:ocash/pages/transfer/controller.dart';
-import 'package:ocash/services/firestore_service.dart';
+import 'package:ocash/services/user_service.dart';
 import 'package:ocash/utils/color_pallete.dart';
 import 'package:ocash/widgets/button/my_button.dart';
 import 'package:ocash/widgets/my_text.dart';
